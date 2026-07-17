@@ -788,6 +788,93 @@
     </div>
 </div>
 
+<!-- Banner Superior de Ofertas Especiales (decantAMS Premium) -->
+<div style="
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
+    border-bottom: 2px solid #D4AF37;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 14px 10px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 998;
+    margin-top: 5px;
+">
+    <span style="
+        color: #D4AF37; 
+        font-size: 11px; 
+        text-transform: uppercase; 
+        letter-spacing: 2.5px; 
+        display: block; 
+        margin-bottom: 6px;
+        font-weight: bold;
+    ">
+        ✨ ESPECIAL DE APERTURA: 10ML EN OFERTA ✨
+    </span>
+    
+    <p style="margin: 0 0 12px 0; font-size: 13px; color: #ccc;">
+        Haz clic en tu favorito para ver la promoción:
+    </p>
+
+    <!-- Contenedor Flex Premium -->
+    <div style="
+        display: flex; 
+        justify-content: center; 
+        gap: 12px; 
+        flex-wrap: wrap;
+        max-width: 650px;
+        margin: 0 auto;
+    ">
+        <!-- Botón Mandarin Sky -->
+        <a href="#catalogo" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+            🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
+        </a>
+
+        <!-- Botón Club de Nuit -->
+        <a href="#catalogo" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+            🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
+        </a>
+
+        <!-- Botón Rave Now -->
+        <a href="#catalogo" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+            ✨ Rave Now <span style="color: #D4AF37;">$100</span>
+        </a>
+    </div>
+</div>
+
+<!-- Lógica Avanzada de Interacción -->
+<script>
+function activarOfertaPerfume(nombreOriginal) {
+    // Le damos un pequeño momento para que termine el scroll automático hacia el catálogo
+    setTimeout(() => {
+        const tarjetas = document.querySelectorAll('.card');
+        tarjetas.forEach(tarjeta => {
+            const dataNombre = tarjeta.getAttribute('data-nombre');
+            
+            // Comparamos ignorando mayúsculas/minúsculas por si acaso
+            if (dataNombre && dataNombre.toLowerCase().trim() === nombreOriginal.toLowerCase().trim()) {
+                
+                // 1. Busca el botón de 10ml dentro de esa tarjeta y le hace clic
+                const boton10ml = tarjeta.querySelector('.medida-btn[data-size="10ml"]');
+                if (boton10ml) {
+                    boton10ml.click();
+                }
+                
+                // 2. Hace brillar la tarjeta en dorado para guiar al cliente
+                tarjeta.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+                tarjeta.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.6)';
+                tarjeta.style.borderColor = '#D4AF37';
+                
+                // Reducimos el brillo suavemente después de 3.5 segundos
+                setTimeout(() => {
+                    tarjeta.style.boxShadow = '';
+                    tarjeta.style.borderColor = '';
+                }, 3500);
+            }
+        });
+    }, 400);
+}
+</script>
 
     <section id="inicio" class="hero">
         <div class="hero-content">
