@@ -826,17 +826,17 @@
         margin: 0 auto;
     ">
         <!-- Botón Mandarin Sky -->
-        <a href="#catalogo" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+        <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
             🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
         </a>
 
         <!-- Botón Club de Nuit -->
-        <a href="#catalogo" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+        <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
             🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
         </a>
 
         <!-- Botón Rave Now -->
-        <a href="#catalogo" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+        <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
             ✨ Rave Now <span style="color: #D4AF37;">$100</span>
         </a>
     </div>
@@ -891,7 +891,7 @@ function activarOfertaPerfume(nombreOriginal) {
         <h2>Nuestros Decants</h2>
         <div class="productos-grid">
             
-            <div class="card" data-tipo="perfume" data-nombre="Mandarin sky">
+            <div class="card" id="prod-mandarin" data-tipo="perfume" data-nombre="Mandarin sky">
                 <img src="https://i.postimg.cc/Y2gc74ZH/Mandsrin-sky.png" alt="Mandarin sky">
                 <h3>Mandarin sky</h3>
                 <div class="perfume-detalles">
@@ -987,7 +987,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <div class="card" data-tipo="perfume" data-nombre="Club de nuit intense">
+            <div class="card" id="prod-club" data-tipo="perfume" data-nombre="Club de nuit intense">
                 <img src="https://i.postimg.cc/9ft4sF2y/Cdn_intense.png" alt="Club de nuit intense">
                 <h3>Club de nuit intense</h3>
                 <div class="perfume-detalles">
@@ -1051,7 +1051,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <div class="card" data-tipo="perfume" data-nombre="Rave now woman">
+            <div class="card" id="prod-rave" data-tipo="perfume" data-nombre="Rave now woman">
                 <img src="https://i.postimg.cc/R0z6PJk1/Rave_now.png" alt="Rave now woman">
                 <h3>Rave now woman</h3>
                 <div class="perfume-detalles">
