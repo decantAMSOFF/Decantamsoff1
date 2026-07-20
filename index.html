@@ -15,14 +15,13 @@
         body {
             font-family: 'Montserrat', Arial, sans-serif;
             background-color: #000000;
-            /* Llamamos directamente a la imagen que subiste a tu GitHub */
             background-image: 
                 linear-gradient(rgba(8, 8, 8, 0.82), rgba(8, 8, 8, 0.88)), 
                 url('marmol-oro.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Efecto parallax épico en el cel */
+            background-attachment: fixed; /* Efecto parallax en el cel */
             color: #fff;
             padding-top: 120px;
             overflow-x: hidden;
@@ -34,11 +33,10 @@
         nav a{color:#fff;text-decoration:none;transition: color 0.3s;font-weight: 500;letter-spacing: 1px;}
         nav a:hover{color:#D4AF37}
 
-
         /* 📦 CINTURÓN DE ENVÍOS PREMIUM */
         .shipping-bar {
             position: fixed;
-            top: 65px; /* Justo debajo del menú principal */
+            top: 65px;
             left: 0;
             width: 100%;
             background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(8, 8, 8, 0.95) 50%, rgba(212, 175, 55, 0.2) 100%);
@@ -69,7 +67,7 @@
             color: #D4AF37;
         }
         
-        /* Animación para el botón del carrito al agregar un producto */
+        /* Animación para el botón del carrito */
         @keyframes sacudida-dorada {
             0% { transform: scale(1); }
             50% { transform: scale(1.25); color: #D4AF37; text-shadow: 0 0 12px #D4AF37; }
@@ -79,7 +77,7 @@
             animation: sacudida-dorada 0.4s ease-in-out;
         }
         
-        /* Hero Section Premium con Logo de decantAMS */
+        /* Hero Section */
         .hero {
             min-height: 70vh;
             display: flex;
@@ -91,16 +89,15 @@
             overflow: hidden;
         }
 
-        /* Contenedor del Logo de decantAMS - AJUSTADO A 200px */
         .brand-logo-container {
             width: 200px !important;
             height: 200px !important;
             margin: 0 auto 25px auto;
             border-radius: 50%;
-            border: 4px solid #D4AF37 !important; /* Borde dorado más marcado */
+            border: 4px solid #D4AF37 !important;
             padding: 8px;
             background: radial-gradient(circle, rgba(17, 17, 17, 0.9) 60%, rgba(212, 175, 55, 0.2) 100%);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); /* Mayor brillo */
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -155,35 +152,29 @@
             margin-top: 20px;
         }
         
-        /* Tarjetas estilo Glassmorphism de Lujo Mejoradas para el Mármol */
-.card {
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    padding: 25px;
-    border-radius: 20px;
-    /* Subimos la opacidad a 0.85 y el blur a 12px para que el fondo no interfiera con las letras */
-    background: rgba(12, 12, 12, 0.85); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-    position: relative;
-    overflow: hidden;
-}
+        /* Tarjetas estilo Glassmorphism */
+        .card {
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(12, 12, 12, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
 
-.card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212, 175, 55, 0.9);
-    background: rgba(18, 18, 18, 0.95);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-}
-
-
-        .card:hover::before {
-            opacity: 1;
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.9);
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
         }
 
         .card img {
@@ -246,6 +237,42 @@
             color: #999;
             font-weight: 500;
         }
+
+        /* 📋 NUEVOS ESTILOS: ESTILO FICHA TÉCNICA */
+        .ficha-tecnica {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 10px;
+            padding: 8px 10px;
+            margin: 10px 0 14px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            font-size: 0.75rem;
+            text-align: left;
+        }
+
+        .ficha-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ficha-label {
+            color: #D4AF37;
+            font-weight: 600;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ficha-val {
+            color: #ddd;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         
         /* Selector tipo Cápsula Premium */
         .medidas-container {
@@ -283,7 +310,7 @@
             box-shadow: 0 4px 15px rgba(212,175,55,0.45);
         }
         
-        /* Animación del Precio */
+        /* Precio Dinámico */
         .precio-dinamico {
             font-size: 1.6rem;
             color: #D4AF37;
@@ -359,7 +386,7 @@
             margin: 25px 0;
         }
         
-        /* Botón de WhatsApp Rediseñado en Negro y Dorado */
+        /* Botón de WhatsApp */
         .btn-whatsapp {
             display: flex;
             align-items: center;
@@ -386,7 +413,6 @@
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
-        /* Corrección del SVG de WhatsApp para evitar que se deforme */
         .btn-whatsapp svg {
             flex-shrink: 0;
             width: 22px;
@@ -406,7 +432,7 @@
             transition: all 0.3s;
         }
 
-        /* 📸 NUEVOS ESTILOS: SECCIÓN NUESTROS CLIENTES (CARRUSEL DE LUJO) */
+        /* Carrusel Clientes */
         .clientes-container {
             max-width: 800px;
             margin: 0 auto;
@@ -434,10 +460,9 @@
             justify-content: center;
         }
 
-        /* Contenedor de la foto con proporción estética */
         .slide-img-container {
             width: 100%;
-            height: 480px; /* Tamaño ideal para retratos de clientes/perfumes */
+            height: 480px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -448,7 +473,7 @@
         .slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recorta la imagen elegantemente para llenar el espacio */
+            object-fit: cover;
             transition: transform 0.8s ease;
         }
 
@@ -456,7 +481,6 @@
             transform: scale(1.03);
         }
 
-        /* Pie de foto de la opinión del cliente */
         .slide-caption {
             width: 100%;
             padding: 20px 40px;
@@ -484,7 +508,6 @@
             letter-spacing: 1.5px;
         }
 
-        /* Botones del Carrusel (Flechas) */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -515,7 +538,6 @@
         .prev-btn { left: 15px; }
         .next-btn { right: 15px; }
 
-        /* Puntos Indicadores (Dots) */
         .carousel-dots {
             display: flex;
             justify-content: center;
@@ -539,17 +561,17 @@
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
         }
 
-        /* 🌟 NOTIFICACIÓN FLOTANTE PREMIUM OPTIMIZADA PARA GOOGLE SITES (Top-Center) */
+        /* Toast Notificación */
         .toast-notificacion {
             position: fixed;
-            top: 130px; /* Ajustada para no colisionar con el nuevo banner */
+            top: 130px;
             left: 50%;
-            transform: translate(-50%, -150px); /* Escondido arriba */
+            transform: translate(-50%, -150px);
             background: rgba(17, 17, 17, 0.95);
             color: #fff;
             border: 1px solid #D4AF37;
             padding: 12px 25px;
-            border-radius: 30px; /* Estilo píldora elegante */
+            border-radius: 30px;
             box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
             z-index: 2000;
             display: flex;
@@ -564,7 +586,7 @@
         }
 
         .toast-notificacion.show {
-            transform: translate(-50%, 0); /* Baja elegantemente */
+            transform: translate(-50%, 0);
             opacity: 1;
         }
 
@@ -573,7 +595,7 @@
             font-size: 1.2rem;
         }
 
-        /* 💎 APARTADO DE PIE DE PÁGINA CON REDES Y ENVÍOS */
+        /* Footer */
         .footer-premium {
             background: rgba(8, 8, 8, 0.95);
             border-top: 1px solid rgba(212, 175, 55, 0.25);
@@ -600,7 +622,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Bloque Informativo de Envíos en Footer */
         .shipping-info-footer {
             max-width: 500px;
             margin: 0 auto 35px auto;
@@ -635,7 +656,6 @@
             margin-bottom: 35px;
         }
 
-        /* Botones de Redes Sociales */
         .social-btn {
             display: flex;
             align-items: center;
@@ -676,9 +696,8 @@
             padding-top: 25px;
         }
 
-        /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES (Único y Corregido) */
+        /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES */
         @media (max-width: 768px) {
-            /* Hace que el menú de navegación se acomode hacia abajo */
             nav {
                 flex-direction: column;
                 gap: 10px;
@@ -691,37 +710,33 @@
                 gap: 12px;
             }
 
-            /* Ajusta el tamaño del texto principal para que no se desborde */
             h1, .descubre-titulo {
                 font-size: 1.8rem !important;
             }
 
-            /* Baja el espacio para que el menú de arriba no tape el logo */
             body {
                 padding-top: 150px !important;
             }
 
-            /* ⚡ FORZA 2 COLUMNAS EN EL CATÁLOGO EN MÓVILES ⚡ */
             .productos-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 12px !important;
                 padding: 0px 5px !important;
             }
 
-            /* Ajuste de márgenes de las tarjetas para que no se vea apretado */
             .card {
                 padding: 12px !important;
                 border-radius: 12px !important;
             }
 
             .card img {
-                max-height: 110px !important; /* Achica un poco la imagen para dejar espacio al texto */
+                max-height: 110px !important;
                 margin-bottom: 10px !important;
                 padding: 5px !important;
             }
 
             .card h3 {
-                font-size: 0.95rem !important; /* Ajusta el nombre del perfume */
+                font-size: 0.95rem !important;
                 min-height: auto !important;
                 margin-bottom: 8px !important;
             }
@@ -739,7 +754,14 @@
 
             .perfume-detalles .notes, 
             .perfume-detalles .etiqueta-uso {
-                display: none !important; /* Esconde las notas largas en celular para mantenerlo estético y limpio */
+                display: none !important;
+            }
+
+            .ficha-tecnica {
+                grid-template-columns: 1fr !important;
+                font-size: 0.68rem !important;
+                padding: 6px !important;
+                margin: 6px 0 !important;
             }
 
             .medidas-container {
@@ -779,102 +801,91 @@
     </nav>
 
     <div class="shipping-bar">
-    <div class="shipping-item">
-        <span>📦</span> ENVÍOS A TODO MÉXICO
+        <div class="shipping-item">
+            <span>📦</span> ENVÍOS A TODO MÉXICO
+        </div>
+        <div class="shipping-item" style="color: rgba(212, 175, 55, 0.4); font-weight: normal;">|</div>
+        <div class="shipping-item">
+            <span>📍</span> ENTREGAS LOCALES EN ZONAS CERCANAS
+        </div>
     </div>
-    <div class="shipping-item" style="color: rgba(212, 175, 55, 0.4); font-weight: normal;">|</div>
-    <div class="shipping-item">
-        <span>📍</span> ENTREGAS LOCALES EN ZONAS CERCANAS
-    </div>
-</div>
 
-<!-- Banner Superior de Ofertas Especiales (decantAMS Premium) -->
-<div style="
-    background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
-    border-bottom: 2px solid #D4AF37;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    padding: 14px 10px;
-    text-align: center;
-    color: #fff;
-    position: relative;
-    z-index: 998;
-    margin-top: 5px;
-">
-    <span style="
-        color: #D4AF37; 
-        font-size: 11px; 
-        text-transform: uppercase; 
-        letter-spacing: 2.5px; 
-        display: block; 
-        margin-bottom: 6px;
-        font-weight: bold;
-    ">
-        ✨ ESPECIAL DE APERTURA: 10ML EN OFERTA ✨
-    </span>
-    
-    <p style="margin: 0 0 12px 0; font-size: 13px; color: #ccc;">
-        Haz clic en tu favorito para ver la promoción:
-    </p>
-
-    <!-- Contenedor Flex Premium -->
+    <!-- Banner Superior de Ofertas Especiales -->
     <div style="
-        display: flex; 
-        justify-content: center; 
-        gap: 12px; 
-        flex-wrap: wrap;
-        max-width: 650px;
-        margin: 0 auto;
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
+        border-bottom: 2px solid #D4AF37;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 14px 10px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        z-index: 998;
+        margin-top: 5px;
     ">
-        <!-- Botón Mandarin Sky -->
-        <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-            🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
-        </a>
+        <span style="
+            color: #D4AF37; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 2.5px; 
+            display: block; 
+            margin-bottom: 6px;
+            font-weight: bold;
+        ">
+            ✨ ESPECIAL DE APERTURA: 10ML EN OFERTA ✨
+        </span>
+        
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #ccc;">
+            Haz clic en tu favorito para ver la promoción:
+        </p>
 
-        <!-- Botón Club de Nuit -->
-        <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-            🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
-        </a>
+        <div style="
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            flex-wrap: wrap;
+            max-width: 650px;
+            margin: 0 auto;
+        ">
+            <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
+            </a>
 
-        <!-- Botón Rave Now -->
-        <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-            ✨ Rave Now <span style="color: #D4AF37;">$100</span>
-        </a>
+            <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
+            </a>
+
+            <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                ✨ Rave Now <span style="color: #D4AF37;">$100</span>
+            </a>
+        </div>
     </div>
-</div>
 
-<!-- Lógica Avanzada de Interacción -->
-<script>
-function activarOfertaPerfume(nombreOriginal) {
-    // Le damos un pequeño momento para que termine el scroll automático hacia el catálogo
-    setTimeout(() => {
-        const tarjetas = document.querySelectorAll('.card');
-        tarjetas.forEach(tarjeta => {
-            const dataNombre = tarjeta.getAttribute('data-nombre');
-            
-            // Comparamos ignorando mayúsculas/minúsculas por si acaso
-            if (dataNombre && dataNombre.toLowerCase().trim() === nombreOriginal.toLowerCase().trim()) {
+    <script>
+    function activarOfertaPerfume(nombreOriginal) {
+        setTimeout(() => {
+            const tarjetas = document.querySelectorAll('.card');
+            tarjetas.forEach(tarjeta => {
+                const dataNombre = tarjeta.getAttribute('data-nombre');
                 
-                // 1. Busca el botón de 10ml dentro de esa tarjeta y le hace clic
-                const boton10ml = tarjeta.querySelector('.medida-btn[data-size="10ml"]');
-                if (boton10ml) {
-                    boton10ml.click();
+                if (dataNombre && dataNombre.toLowerCase().trim() === nombreOriginal.toLowerCase().trim()) {
+                    const boton10ml = tarjeta.querySelector('.medida-btn[data-size="10ml"]');
+                    if (boton10ml) {
+                        boton10ml.click();
+                    }
+                    
+                    tarjeta.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+                    tarjeta.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.6)';
+                    tarjeta.style.borderColor = '#D4AF37';
+                    
+                    setTimeout(() => {
+                        tarjeta.style.boxShadow = '';
+                        tarjeta.style.borderColor = '';
+                    }, 3500);
                 }
-                
-                // 2. Hace brillar la tarjeta en dorado para guiar al cliente
-                tarjeta.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
-                tarjeta.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.6)';
-                tarjeta.style.borderColor = '#D4AF37';
-                
-                // Reducimos el brillo suavemente después de 3.5 segundos
-                setTimeout(() => {
-                    tarjeta.style.boxShadow = '';
-                    tarjeta.style.borderColor = '';
-                }, 3500);
-            }
-        });
-    }, 400);
-}
-</script>
+            });
+        }, 400);
+    }
+    </script>
 
     <section id="inicio" class="hero">
         <div class="hero-content">
@@ -891,6 +902,7 @@ function activarOfertaPerfume(nombreOriginal) {
         <h2>Nuestros Decants</h2>
         <div class="productos-grid">
             
+            <!-- Mandarin Sky -->
             <div class="card" id="prod-mandarin" data-tipo="perfume" data-nombre="Mandarin sky">
                 <img src="https://i.postimg.cc/Y2gc74ZH/Mandsrin-sky.png" alt="Mandarin sky">
                 <h3>Mandarin sky</h3>
@@ -899,6 +911,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍊 Mandarina, Azafrán, Caramelo</p>
                     <span class="etiqueta-uso">✨ Uso: Noche / Eventos Especiales</span>
                 </div>
+                
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada - Alta</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Templado / Frío</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Noche / Fiestas</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
@@ -907,6 +928,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Bharara King Soleil -->
             <div class="card" data-tipo="perfume" data-nombre="Bharara king soleil">
                 <img src="https://i.postimg.cc/5NR8m09v/Bharara.png" alt="Bharara king soleil">
                 <h3>Bharara king soleil</h3>
@@ -915,6 +937,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍋 Limón, Bergamota, Ámbar Cálido</p>
                     <span class="etiqueta-uso">☀️ Uso: Diario / Clima Cálido</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Pesada / Intensa</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Cálido / Sol</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Diario / Casual</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
@@ -923,6 +954,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Ramz Gold -->
             <div class="card" data-tipo="perfume" data-nombre="Ramz gold">
                 <img src="https://i.postimg.cc/DzdWRyhL/Ramz_gold.png" alt="Ramz gold">
                 <h3>Ramz gold</h3>
@@ -931,6 +963,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🪵 Notas Dulces, Sándalo, Madera</p>
                     <span class="etiqueta-uso">🍂 Uso: Otoño / Clima Templado</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-8 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Fresco / Otoño</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Elegante / Diario</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
@@ -939,6 +980,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Ramz Silver -->
             <div class="card" data-tipo="perfume" data-nombre="Ramz silver">
                 <img src="https://i.postimg.cc/3wH4L0sX/Ramz_silver.png" alt="Ramz silver">
                 <h3>Ramz silver</h3>
@@ -947,6 +989,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍦 Vainilla Dulce, Lavanda, Menta</p>
                     <span class="etiqueta-uso">❄️ Uso: Noche / Citas / Invierno</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Alta</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Noche</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Citas / Salidas</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
@@ -955,6 +1006,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Odyssey Aoud -->
             <div class="card" data-tipo="perfume" data-nombre="Odyssey aoud">
                 <img src="https://i.postimg.cc/DzdWRyhP/Oddysey_aoud.png" alt="Odyssey aoud">
                 <h3>Odyssey aoud</h3>
@@ -963,6 +1015,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🪵 Oud Misterioso, Azafrán, Pachulí</p>
                     <span class="etiqueta-uso">🎩 Uso: Formal / Noche de Gala</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">9-11 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Intensa / Pesada</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Invierno</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Formal / Noche</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
@@ -971,6 +1032,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Odyssey Wild One Gold -->
             <div class="card" data-tipo="perfume" data-nombre="Odyssey wild one gold">
                 <img src="https://i.postimg.cc/jjQWBdTc/Oddysey_wild.png" alt="Odyssey wild one gold">
                 <h3>Odyssey wild one gold</h3>
@@ -979,6 +1041,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🌶️ Pimienta, Lavanda, Vetiver Terroso</p>
                     <span class="etiqueta-uso">⚡ Uso: Firma / Carácter Fuerte</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada - Alta</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Todo Clima</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Perfume Firma</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
@@ -987,6 +1058,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Club de Nuit Intense -->
             <div class="card" id="prod-club" data-tipo="perfume" data-nombre="Club de nuit intense">
                 <img src="https://i.postimg.cc/9ft4sF2y/Cdn_intense.png" alt="Club de nuit intense">
                 <h3>Club de nuit intense</h3>
@@ -995,6 +1067,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍍 Piña Ahumada, Limón, Abedul</p>
                     <span class="etiqueta-uso">🔥 Uso: Conquista / Extremadamente Halagado</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">10+ Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Proyección Épica</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Versátil</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Rey de Halagos</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
@@ -1003,6 +1084,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Club de Nuit Sillage -->
             <div class="card" data-tipo="perfume" data-nombre="Club de nuit sillage">
                 <img src="https://i.postimg.cc/1zcgb5Sc/CDN_SILLAGE.png" alt="Club de nuit sillage">
                 <h3>Club de nuit sillage</h3>
@@ -1011,6 +1093,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">❄️ Grosellas Negras, Bergamota, Sándalo</p>
                     <span class="etiqueta-uso">👔 Uso: Oficina / Elegancia Limpia</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Alta / Radiante</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Calor</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Oficina / Formal</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
@@ -1019,6 +1110,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Tubbees Strawberry -->
             <div class="card" data-tipo="perfume" data-nombre="Tubbees strawberry">
                 <img src="https://i.postimg.cc/TPXLk5zD/Strowberry.png" alt="Tubbees strawberry">
                 <h3>Tubbees strawberry</h3>
@@ -1027,6 +1119,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍓 Fresa Cremosa, Crema Batida, Vainilla</p>
                     <span class="etiqueta-uso">🍭 Uso: Casual / Salidas Divertidas</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-7 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Clima Fco. / Templado</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Casual / Juventud</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
@@ -1035,6 +1136,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Tubbees Cookies & Cream -->
             <div class="card" data-tipo="perfume" data-nombre="Tubbees cookies & cream">
                 <img src="https://i.postimg.cc/bvjD6S79/Cookies.png" alt="Tubbees cookies&cream">
                 <h3>Tubbees cookies & cream</h3>
@@ -1043,6 +1145,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍪 Galleta de Chocolate, Crema Dulce</p>
                     <span class="etiqueta-uso">🍫 Uso: Informal / Amantes de lo Dulce</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-8 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Aptitosa / Dulce</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Invierno</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Gourmand Adictivo</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
@@ -1051,6 +1162,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Rave Now Woman -->
             <div class="card" id="prod-rave" data-tipo="perfume" data-nombre="Rave now woman">
                 <img src="https://i.postimg.cc/R0z6PJk1/Rave_now.png" alt="Rave now woman">
                 <h3>Rave now woman</h3>
@@ -1059,6 +1171,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🍓 Frutos Rojos, Malvavisco, Almizcle</p>
                     <span class="etiqueta-uso">👗 Uso: Diario / Coqueto y Femenino</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Encantadora / Alta</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Verano</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Diario / Citas</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
@@ -1067,6 +1188,7 @@ function activarOfertaPerfume(nombreOriginal) {
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- Fakhar Rose -->
             <div class="card" data-tipo="perfume" data-nombre="Fakhar rose">
                 <img src="https://i.postimg.cc/jjrw8npQ/Fakhar_rose.png" alt="Fakhar rose">
                 <h3>Fakhar rose</h3>
@@ -1075,6 +1197,15 @@ function activarOfertaPerfume(nombreOriginal) {
                     <p class="notes">🌹 Rosa, Jazmín, Gardenia, Vainilla</p>
                     <span class="etiqueta-uso">💍 Uso: Elegante / Eventos de Día</span>
                 </div>
+
+                <!-- Ficha Técnica -->
+                <div class="ficha-tecnica">
+                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Elegante / Femenina</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Otoño</span></div>
+                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Eventos / Sofisticada</span></div>
+                </div>
+
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
                     <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
@@ -1228,19 +1359,14 @@ function activarOfertaPerfume(nombreOriginal) {
     <script>
         let carrito = [];
 
-        // Variables globales para el carrusel de clientes
         let currentSlide = 0;
         let slideInterval;
         const slides = document.getElementById('carousel-slides');
         const dots = document.querySelectorAll('.dot');
         const totalSlides = document.querySelectorAll('.slide').length;
 
-        // Aseguramos que el DOM esté completamente cargado para inicializar las acciones
         document.addEventListener('DOMContentLoaded', () => {
             
-            // ==========================================
-            // FIX: Navegación Forzada para Google Sites
-            // ==========================================
             document.querySelectorAll('nav a, .hero-content .btn').forEach(enlace => {
                 enlace.addEventListener('click', (e) => {
                     const destinoId = enlace.getAttribute('href');
@@ -1259,7 +1385,6 @@ function activarOfertaPerfume(nombreOriginal) {
                 });
             });
 
-            // 1. Manejo de botones de tamaño (5ml / 10ml) en perfumes
             document.querySelectorAll('.medidas-container').forEach(container => {
                 container.addEventListener('click', (e) => {
                     const btn = e.target.closest('.medida-btn');
@@ -1283,7 +1408,6 @@ function activarOfertaPerfume(nombreOriginal) {
                 });
             });
 
-            // 2. Manejo unificado de clics en el botón de "Agregar al Carrito"
             document.querySelectorAll('.btn-agregar').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const card = e.target.closest('.card');
@@ -1302,18 +1426,11 @@ function activarOfertaPerfume(nombreOriginal) {
                 });
             });
 
-            // 3. Inicializar auto-reproducción del carrusel de clientes
             startSlideShow();
         });
 
-        // ==========================================
-        // FUNCIONES DEL CARRUSEL DE CLIENTES
-        // ==========================================
         function actualizarCarrusel() {
-            // Mueve la tira de diapositivas según la posición actual
             slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            // Actualiza los puntos indicadores (dots)
             dots.forEach((dot, index) => {
                 if (index === currentSlide) {
                     dot.classList.add('active');
@@ -1324,7 +1441,7 @@ function activarOfertaPerfume(nombreOriginal) {
         }
 
         function cambiarSlide(direccion) {
-            resetSlideShow(); // Reinicia el temporizador si el usuario interactúa
+            resetSlideShow();
             currentSlide += direccion;
             
             if (currentSlide >= totalSlides) {
@@ -1336,7 +1453,7 @@ function activarOfertaPerfume(nombreOriginal) {
         }
 
         function irASlide(index) {
-            resetSlideShow(); // Reinicia el temporizador
+            resetSlideShow();
             currentSlide = index;
             actualizarCarrusel();
         }
@@ -1344,7 +1461,7 @@ function activarOfertaPerfume(nombreOriginal) {
         function startSlideShow() {
             slideInterval = setInterval(() => {
                 cambiarSlide(1);
-            }, 4000); // Cambia cada 4 segundos
+            }, 4000);
         }
 
         function resetSlideShow() {
@@ -1352,9 +1469,6 @@ function activarOfertaPerfume(nombreOriginal) {
             startSlideShow();
         }
 
-        // ==========================================
-        // FUNCIONES INTERNAS DEL CARRUSEL
-        // ==========================================
         function agregarAlCarrito(nombre, medida, precio) {
             const itemExistente = carrito.find(item => item.nombre === nombre && item.medida === medida);
             
@@ -1409,7 +1523,6 @@ function activarOfertaPerfume(nombreOriginal) {
             precioTotalSpan.innerText = total.toFixed(2);
             cartCountSpan.innerText = totalCantidad;
 
-            // Enlace de WhatsApp para mandar el pedido
             let mensaje = `Hola decantAMS, me interesa realizar un pedido de los siguientes artículos:\n\n`;
             carrito.forEach(item => {
                 mensaje += `- ${item.nombre} (${item.medida}) x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}\n`;
