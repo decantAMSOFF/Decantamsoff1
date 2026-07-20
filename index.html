@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>decantAMS - Perfumes Exclusivos</title>
-        <style>
+    <style>
         /* Estilos CSS Base con Fondo de Lujo Local Integrado */
         *{margin:0;padding:0;box-sizing:border-box}
 
@@ -204,76 +204,162 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Estilos de los Detalles del Perfume */
-        .perfume-detalles {
-            margin-bottom: 18px;
-            font-size: 0.85rem;
-            color: #ccc;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .perfume-detalles .familia {
+        /* Tag de Familia Olfativa en Tarjeta */
+        .badge-familia {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.12);
             color: #D4AF37;
+            font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            background: rgba(212, 175, 55, 0.12);
-            padding: 3px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin: 8px auto 12px auto;
         }
 
-        .perfume-detalles .notes {
-            font-style: italic;
-            color: #e0e0e0;
-        }
-
-        .perfume-detalles .etiqueta-uso {
-            font-size: 0.75rem;
-            color: #999;
-            font-weight: 500;
-        }
-
-        /* 📋 NUEVOS ESTILOS: ESTILO FICHA TÉCNICA */
-        .ficha-tecnica {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 10px;
-            padding: 8px 10px;
-            margin: 10px 0 14px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            font-size: 0.75rem;
-            text-align: left;
-        }
-
-        .ficha-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ficha-label {
+        /* 🔍 BOTÓN DE FICHA TÉCNICA */
+        .btn-ficha-tecnica {
+            background: rgba(0, 0, 0, 0.6);
             color: #D4AF37;
+            border: 1px solid #D4AF37;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px auto 15px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
         }
 
-        .ficha-val {
-            color: #ddd;
-            font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .btn-ficha-tecnica:hover {
+            background: #D4AF37;
+            color: #111;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
-        
+
+        /* 🪟 ESTILOS MODAL POP-UP */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-container.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(15, 15, 15, 0.98);
+            border: 2px solid #D4AF37;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 440px;
+            padding: 30px 25px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            text-align: left;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-container.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #888;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #D4AF37;
+        }
+
+        .modal-titulo {
+            color: #D4AF37;
+            font-size: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .modal-subtitulo {
+            color: #aaa;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-badge-categoria {
+            display: block;
+            text-align: center;
+            background: rgba(212, 175, 55, 0.15);
+            color: #D4AF37;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0 auto 20px auto;
+            width: fit-content;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-seccion {
+            margin-bottom: 18px;
+        }
+
+        .modal-seccion h3 {
+            color: #D4AF37;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .modal-seccion ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-seccion li {
+            font-size: 0.85rem;
+            color: #ddd;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
         /* Selector tipo Cápsula Premium */
         .medidas-container {
             display: flex;
@@ -710,7 +796,7 @@
                 gap: 12px;
             }
 
-            h1, .descubre-titulo {
+            h1 {
                 font-size: 1.8rem !important;
             }
 
@@ -738,30 +824,19 @@
             .card h3 {
                 font-size: 0.95rem !important;
                 min-height: auto !important;
+                margin-bottom: 4px !important;
+            }
+
+            .badge-familia {
+                font-size: 0.65rem !important;
+                padding: 3px 8px !important;
                 margin-bottom: 8px !important;
             }
 
-            .perfume-detalles {
-                font-size: 0.75rem !important;
+            .btn-ficha-tecnica {
+                font-size: 0.7rem !important;
+                padding: 6px 10px !important;
                 margin-bottom: 10px !important;
-                gap: 4px !important;
-            }
-
-            .perfume-detalles .familia {
-                font-size: 0.65rem !important;
-                padding: 2px 6px !important;
-            }
-
-            .perfume-detalles .notes, 
-            .perfume-detalles .etiqueta-uso {
-                display: none !important;
-            }
-
-            .ficha-tecnica {
-                grid-template-columns: 1fr !important;
-                font-size: 0.68rem !important;
-                padding: 6px !important;
-                margin: 6px 0 !important;
             }
 
             .medidas-container {
@@ -902,23 +977,13 @@
         <h2>Nuestros Decants</h2>
         <div class="productos-grid">
             
-            <!-- Mandarin Sky -->
+            <!-- 1. Mandarin Sky -->
             <div class="card" id="prod-mandarin" data-tipo="perfume" data-nombre="Mandarin sky">
                 <img src="https://i.postimg.cc/Y2gc74ZH/Mandsrin-sky.png" alt="Mandarin sky">
                 <h3>Mandarin sky</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Cítrica Especiada</span>
-                    <p class="notes">🍊 Mandarina, Azafrán, Caramelo</p>
-                    <span class="etiqueta-uso">✨ Uso: Noche / Eventos Especiales</span>
-                </div>
+                <span class="badge-familia">Cítrica Especiada</span>
                 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada - Alta</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Templado / Frío</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Noche / Fiestas</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-mandarin')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
@@ -928,23 +993,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Bharara King Soleil -->
+            <!-- 2. Bharara King Soleil -->
             <div class="card" data-tipo="perfume" data-nombre="Bharara king soleil">
                 <img src="https://i.postimg.cc/5NR8m09v/Bharara.png" alt="Bharara king soleil">
                 <h3>Bharara king soleil</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Cítrica Ámbar</span>
-                    <p class="notes">🍋 Limón, Bergamota, Ámbar Cálido</p>
-                    <span class="etiqueta-uso">☀️ Uso: Diario / Clima Cálido</span>
-                </div>
+                <span class="badge-familia">Cítrica Ámbar</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Pesada / Intensa</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Cálido / Sol</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Diario / Casual</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-bharara')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
@@ -954,23 +1009,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Ramz Gold -->
+            <!-- 3. Ramz Gold -->
             <div class="card" data-tipo="perfume" data-nombre="Ramz gold">
                 <img src="https://i.postimg.cc/DzdWRyhL/Ramz_gold.png" alt="Ramz gold">
                 <h3>Ramz gold</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Ámbar Floral</span>
-                    <p class="notes">🪵 Notas Dulces, Sándalo, Madera</p>
-                    <span class="etiqueta-uso">🍂 Uso: Otoño / Clima Templado</span>
-                </div>
+                <span class="badge-familia">Ámbar Floral</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-8 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Fresco / Otoño</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Elegante / Diario</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-ramz-gold')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
@@ -980,23 +1025,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Ramz Silver -->
+            <!-- 4. Ramz Silver -->
             <div class="card" data-tipo="perfume" data-nombre="Ramz silver">
                 <img src="https://i.postimg.cc/3wH4L0sX/Ramz_silver.png" alt="Ramz silver">
                 <h3>Ramz silver</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Ámbar Vainilla</span>
-                    <p class="notes">🍦 Vainilla Dulce, Lavanda, Menta</p>
-                    <span class="etiqueta-uso">❄️ Uso: Noche / Citas / Invierno</span>
-                </div>
+                <span class="badge-familia">Ámbar Vainilla</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Alta</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Noche</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Citas / Salidas</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-ramz-silver')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
@@ -1006,23 +1041,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Odyssey Aoud -->
+            <!-- 5. Odyssey Aoud -->
             <div class="card" data-tipo="perfume" data-nombre="Odyssey aoud">
                 <img src="https://i.postimg.cc/DzdWRyhP/Oddysey_aoud.png" alt="Odyssey aoud">
                 <h3>Odyssey aoud</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Amaderada Oud</span>
-                    <p class="notes">🪵 Oud Misterioso, Azafrán, Pachulí</p>
-                    <span class="etiqueta-uso">🎩 Uso: Formal / Noche de Gala</span>
-                </div>
+                <span class="badge-familia">Amaderada Oud</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">9-11 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Intensa / Pesada</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Invierno</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Formal / Noche</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-odyssey-aoud')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
@@ -1032,23 +1057,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Odyssey Wild One Gold -->
+            <!-- 6. Odyssey Wild One Gold -->
             <div class="card" data-tipo="perfume" data-nombre="Odyssey wild one gold">
                 <img src="https://i.postimg.cc/jjQWBdTc/Oddysey_wild.png" alt="Odyssey wild one gold">
                 <h3>Odyssey wild one gold</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Amaderada Especiado</span>
-                    <p class="notes">🌶️ Pimienta, Lavanda, Vetiver Terroso</p>
-                    <span class="etiqueta-uso">⚡ Uso: Firma / Carácter Fuerte</span>
-                </div>
+                <span class="badge-familia">Amaderada Especiado</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada - Alta</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Todo Clima</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Perfume Firma</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-odyssey-wild')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
@@ -1058,23 +1073,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Club de Nuit Intense -->
+            <!-- 7. Club de Nuit Intense -->
             <div class="card" id="prod-club" data-tipo="perfume" data-nombre="Club de nuit intense">
                 <img src="https://i.postimg.cc/9ft4sF2y/Cdn_intense.png" alt="Club de nuit intense">
                 <h3>Club de nuit intense</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Amaderada Cítrica</span>
-                    <p class="notes">🍍 Piña Ahumada, Limón, Abedul</p>
-                    <span class="etiqueta-uso">🔥 Uso: Conquista / Extremadamente Halagado</span>
-                </div>
+                <span class="badge-familia">Amaderada Cítrica</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">10+ Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Proyección Épica</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Versátil</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Rey de Halagos</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-cdn-intense')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
@@ -1084,23 +1089,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Club de Nuit Sillage -->
+            <!-- 8. Club de Nuit Sillage -->
             <div class="card" data-tipo="perfume" data-nombre="Club de nuit sillage">
                 <img src="https://i.postimg.cc/1zcgb5Sc/CDN_SILLAGE.png" alt="Club de nuit sillage">
                 <h3>Club de nuit sillage</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Almizcle Floral</span>
-                    <p class="notes">❄️ Grosellas Negras, Bergamota, Sándalo</p>
-                    <span class="etiqueta-uso">👔 Uso: Oficina / Elegancia Limpia</span>
-                </div>
+                <span class="badge-familia">Almizcle Floral</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Alta / Radiante</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Calor</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Oficina / Formal</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-cdn-sillage')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
@@ -1110,23 +1105,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Tubbees Strawberry -->
+            <!-- 9. Tubbees Strawberry -->
             <div class="card" data-tipo="perfume" data-nombre="Tubbees strawberry">
                 <img src="https://i.postimg.cc/TPXLk5zD/Strowberry.png" alt="Tubbees strawberry">
                 <h3>Tubbees strawberry</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Gourmand Dulce</span>
-                    <p class="notes">🍓 Fresa Cremosa, Crema Batida, Vainilla</p>
-                    <span class="etiqueta-uso">🍭 Uso: Casual / Salidas Divertidas</span>
-                </div>
+                <span class="badge-familia">Gourmand Dulce</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-7 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Moderada</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Clima Fco. / Templado</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Casual / Juventud</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-tubbees-strawberry')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
@@ -1136,23 +1121,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Tubbees Cookies & Cream -->
+            <!-- 10. Tubbees Cookies & Cream -->
             <div class="card" data-tipo="perfume" data-nombre="Tubbees cookies & cream">
                 <img src="https://i.postimg.cc/bvjD6S79/Cookies.png" alt="Tubbees cookies&cream">
                 <h3>Tubbees cookies & cream</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Gourmand Extremo</span>
-                    <p class="notes">🍪 Galleta de Chocolate, Crema Dulce</p>
-                    <span class="etiqueta-uso">🍫 Uso: Informal / Amantes de lo Dulce</span>
-                </div>
+                <span class="badge-familia">Gourmand Extremo</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">6-8 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Aptitosa / Dulce</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Frío / Invierno</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Gourmand Adictivo</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-tubbees-cookies')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
@@ -1162,23 +1137,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Rave Now Woman -->
+            <!-- 11. Rave Now Woman -->
             <div class="card" id="prod-rave" data-tipo="perfume" data-nombre="Rave now woman">
                 <img src="https://i.postimg.cc/R0z6PJk1/Rave_now.png" alt="Rave now woman">
                 <h3>Rave now woman</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Floral Frutal</span>
-                    <p class="notes">🍓 Frutos Rojos, Malvavisco, Almizcle</p>
-                    <span class="etiqueta-uso">👗 Uso: Diario / Coqueto y Femenino</span>
-                </div>
+                <span class="badge-familia">Floral Frutal</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">7-9 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Encantadora / Alta</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Verano</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Diario / Citas</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-rave-woman')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
@@ -1188,23 +1153,13 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- Fakhar Rose -->
+            <!-- 12. Fakhar Rose -->
             <div class="card" data-tipo="perfume" data-nombre="Fakhar rose">
                 <img src="https://i.postimg.cc/jjrw8npQ/Fakhar_rose.png" alt="Fakhar rose">
                 <h3>Fakhar rose</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Floral Dulce</span>
-                    <p class="notes">🌹 Rosa, Jazmín, Gardenia, Vainilla</p>
-                    <span class="etiqueta-uso">💍 Uso: Elegante / Eventos de Día</span>
-                </div>
+                <span class="badge-familia">Floral Dulce</span>
 
-                <!-- Ficha Técnica -->
-                <div class="ficha-tecnica">
-                    <div class="ficha-item"><span class="ficha-label">Duración</span><span class="ficha-val">8-10 Horas</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Estela</span><span class="ficha-val">Elegante / Femenina</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Clima</span><span class="ficha-val">Primavera / Otoño</span></div>
-                    <div class="ficha-item"><span class="ficha-label">Versatilidad</span><span class="ficha-val">Eventos / Sofisticada</span></div>
-                </div>
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-fakhar-rose')">🔍 Ficha Técnica</button>
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
@@ -1217,6 +1172,332 @@
         </div>
     </section>
 
+    <!-- 🪟 MODALES DE FICHAS TÉCNICAS (12 PERFUMES) -->
+    
+    <!-- 1. Mandarin Sky Modal -->
+    <div id="modal-mandarin" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-mandarin')">&times;</span>
+            <h2 class="modal-titulo">MANDARIN SKY</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA CÍTIRCA ESPECIADA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍊 <strong>Salida:</strong> Mandarina, Naranja, Azafrán y Salvia</li>
+                    <li>🍯 <strong>Corazón:</strong> Caramelo, Haba Tonka y Cempasúchil</li>
+                    <li>🌲 <strong>Base:</strong> Ambroxan, Cedro y Vetiver</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada - Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Templado / Frío</li>
+                    <li>💼 <strong>Ocasión:</strong> Noche / Eventos Especiales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Bharara King Soleil Modal -->
+    <div id="modal-bharara" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-bharara')">&times;</span>
+            <h2 class="modal-titulo">BHARARA KING SOLEIL</h2>
+            <p class="modal-subtitulo">🇺🇸 Diseñador | 👦 Hombre | 💎 Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA CÍTRICA ÁMBAR</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍋 <strong>Salida:</strong> Limón, Bergamota y Naranja</li>
+                    <li>🍏 <strong>Corazón:</strong> Manzana, Melocotón y Notas Afrutadas</li>
+                    <li>🪵 <strong>Base:</strong> Ámbar Cálido, Vainilla y Almizcle Blancos</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Pesada / Intensa</li>
+                    <li>☀️ <strong>Clima:</strong> Cálido / Sol</li>
+                    <li>💼 <strong>Ocasión:</strong> Diario / Casual</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Ramz Gold Modal -->
+    <div id="modal-ramz-gold" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-ramz-gold')">&times;</span>
+            <h2 class="modal-titulo">RAMZ GOLD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 🚻 Unisex | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ÁMBAR FLORAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍏 <strong>Salida:</strong> Manzana, Piña y Bergamota</li>
+                    <li>🪷 <strong>Corazón:</strong> Sándalo, Jazmín y Paculí</li>
+                    <li>🪵 <strong>Base:</strong> Notas Dulces, Ámbar y Madera de Guayaco</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-8 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada</li>
+                    <li>☀️ <strong>Clima:</strong> Fresco / Otoño</li>
+                    <li>💼 <strong>Ocasión:</strong> Elegante / Diario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Ramz Silver Modal -->
+    <div id="modal-ramz-silver" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-ramz-silver')">&times;</span>
+            <h2 class="modal-titulo">RAMZ SILVER</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ÁMBAR VAINILLA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌿 <strong>Salida:</strong> Lavanda, Menta, Bergamota y Pera</li>
+                    <li>🌶️ <strong>Corazón:</strong> Cardamomo y Salvia</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Dulce, Ámbar y Almizcle</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Noche</li>
+                    <li>💼 <strong>Ocasión:</strong> Citas / Salidas Nocturnas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Odyssey Aoud Modal -->
+    <div id="modal-odyssey-aoud" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-odyssey-aoud')">&times;</span>
+            <h2 class="modal-titulo">ODYSSEY AOUD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA OUD</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌾 <strong>Salida:</strong> Azafrán, Nutmeg y Lavanda</li>
+                    <li>🪵 <strong>Corazón:</strong> Oud Misterioso y Resinas</li>
+                    <li>🌿 <strong>Base:</strong> Pachulí, Ámbar y Almizcle</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 9-11 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Intensa / Pesada</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Invierno</li>
+                    <li>💼 <strong>Ocasión:</strong> Formal / Noche de Gala</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Odyssey Wild One Gold Modal -->
+    <div id="modal-odyssey-wild" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-odyssey-wild')">&times;</span>
+            <h2 class="modal-titulo">ODYSSEY WILD ONE GOLD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA ESPECIADA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌶️ <strong>Salida:</strong> Pimienta Negra, Bergamota y Limón</li>
+                    <li>🌿 <strong>Corazón:</strong> Lavanda, Pimienta Rosa y Vetiver</li>
+                    <li>🪵 <strong>Base:</strong> Vetiver Terroso, Cedro y Ambroxan</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada - Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Todo Clima</li>
+                    <li>💼 <strong>Ocasión:</strong> Perfume Firma / Carácter Fuerte</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Club de Nuit Intense Modal -->
+    <div id="modal-cdn-intense" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-cdn-intense')">&times;</span>
+            <h2 class="modal-titulo">CLUB DE NUIT INTENSE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Toilette / Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA CÍTRICA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍍 <strong>Salida:</strong> Limón, Piña Ahumada, Grosellas Negras y Bergamota</li>
+                    <li>🌹 <strong>Corazón:</strong> Abedul, Jazmín y Rosa</li>
+                    <li>🪵 <strong>Base:</strong> Almizcle, Ámbar Gris, Pachulí y Vainilla</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 10+ Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Épica / Bestia</li>
+                    <li>☀️ <strong>Clima:</strong> Versátil</li>
+                    <li>💼 <strong>Ocasión:</strong> Conquista / Rey de Halagos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Club de Nuit Sillage Modal -->
+    <div id="modal-cdn-sillage" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-cdn-sillage')">&times;</span>
+            <h2 class="modal-titulo">CLUB DE NUIT SILLAGE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 🚻 Unisex | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ALMIZCLE FLORAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>❄️ <strong>Salida:</strong> Bergamota, Grosellas Negras, Limón y Violeta</li>
+                    <li>🪷 <strong>Corazón:</strong> Rosa, Jazmín e Iris</li>
+                    <li>🪵 <strong>Base:</strong> Sándalo, Almizcle, Ambrosia y Cedro</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Alta / Radiante</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Calor</li>
+                    <li>💼 <strong>Ocasión:</strong> Oficina / Elegancia Limpia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Tubbees Strawberry Modal -->
+    <div id="modal-tubbees-strawberry" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-tubbees-strawberry')">&times;</span>
+            <h2 class="modal-titulo">TUBBEES STRAWBERRY</h2>
+            <p class="modal-subtitulo">🇬🇧 Importado | 👧 Mujer / Unisex | 💎 Body Mist / EDP</p>
+            <span class="modal-badge-categoria">FRAGANCIA GOURMAND DULCE</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍓 <strong>Salida:</strong> Fresa Cremosa y Azúcar Dulce</li>
+                    <li>🥛 <strong>Corazón:</strong> Crema Batida y Malvavisco</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Dulce y Almizcle Suave</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-7 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada</li>
+                    <li>☀️ <strong>Clima:</strong> Clima Fresco / Templado</li>
+                    <li>💼 <strong>Ocasión:</strong> Casual / Salidas Divertidas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Tubbees Cookies & Cream Modal -->
+    <div id="modal-tubbees-cookies" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-tubbees-cookies')">&times;</span>
+            <h2 class="modal-titulo">TUBBEES COOKIES & CREAM</h2>
+            <p class="modal-subtitulo">🇬🇧 Importado | 🚻 Unisex | 💎 Body Mist / EDP</p>
+            <span class="modal-badge-categoria">FRAGANCIA GOURMAND EXTREMO</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍪 <strong>Salida:</strong> Galleta de Chocolate Negro</li>
+                    <li>🥛 <strong>Corazón:</strong> Crema Dulce de Leche y Manteca de Cacao</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Intensa y Cacao en Polvo</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-8 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Apetitosa / Dulce</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Invierno</li>
+                    <li>💼 <strong>Ocasión:</strong> Informal / Gourmand Adictivo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. Rave Now Woman Modal -->
+    <div id="modal-rave-woman" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-rave-woman')">&times;</span>
+            <h2 class="modal-titulo">RAVE NOW WOMAN</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👧 Mujer | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA FLORAL FRUTAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍓 <strong>Salida:</strong> Frutos Rojos, Naranja y Fruta de la Pasión</li>
+                    <li>🪷 <strong>Corazón:</strong> Malvavisco, Lirio de los Valles y Jazmín</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla, Almizcle y Musgo</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Encantadora / Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Verano</li>
+                    <li>💼 <strong>Ocasión:</strong> Diario / Coqueto y Femenino</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 12. Fakhar Rose Modal -->
+    <div id="modal-fakhar-rose" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-fakhar-rose')">&times;</span>
+            <h2 class="modal-titulo">FAKHAR ROSE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👧 Mujer | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA FLORAL DULCE</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍑 <strong>Salida:</strong> Frutas Maduras, Granadella y Azahar</li>
+                    <li>🌹 <strong>Corazón:</strong> Rosa, Tubewrosa, Jazmín y Gardenia</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla, Sándalo, Pachulí y Vainilla Dulce</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Elegante / Femenina</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Otoño</li>
+                    <li>💼 <strong>Ocasión:</strong> Eventos / Sofisticada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <section id="gorras">
         <h2>Gorras Exclusivas</h2>
         <div class="productos-grid">
@@ -1224,11 +1505,9 @@
             <div class="card" data-tipo="gorra" data-nombre="BARBASHATS CR*ME">
                 <img src="https://i.postimg.cc/Y0gDVSRF/Barbascrm.png" alt="BARBASHATS CR*ME">
                 <h3>BARBASHATS CR*ME</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Streetwear</span>
-                    <p class="notes">🧢 Broche ajustable, diseño minimalista</p>
-                    <span class="etiqueta-uso">🔥 Estilo: Diario / Outfits Exclusivos</span>
-                </div>
+                <span class="badge-familia">Streetwear</span>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">🧢 Broche ajustable, diseño minimalista</p>
+                
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="Unitalla" data-price="750">Unitalla</button>
                 </div>
@@ -1239,11 +1518,9 @@
             <div class="card" data-tipo="gorra" data-nombre="BARBASHATS BCROSS">
                 <img src="https://i.postimg.cc/m2f59QZN/Barbasbcrs.png" alt="BARBASHATS BCROSS">
                 <h3>BARBASHATS BCROSS</h3>
-                <div class="perfume-detalles">
-                    <span class="familia">Streetwear</span>
-                    <p class="notes">👑 Logo bordado con pedreria</p>
-                    <span class="etiqueta-uso">✨ Estilo: Salidas / Noche</span>
-                </div>
+                <span class="badge-familia">Streetwear</span>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">👑 Logo bordado con pedreria</p>
+                
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="Unitalla" data-price="750">Unitalla</button>
                 </div>
@@ -1427,6 +1704,40 @@
             });
 
             startSlideShow();
+        });
+
+        /* 🪟 FUNCIONES LÓGICAS PARA VENTANAS MODALES */
+        function abrirModal(idModal) {
+            const modal = document.getElementById(idModal);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; /* Evita scroll de fondo */
+            }
+        }
+
+        function cerrarModal(idModal) {
+            const modal = document.getElementById(idModal);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; /* Reactiva scroll */
+            }
+        }
+
+        /* Cerrar modal si hace clic fuera o presiona la tecla ESC */
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal-container')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-container.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
         });
 
         function actualizarCarrusel() {
