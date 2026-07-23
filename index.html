@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -24,6 +25,18 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             padding-bottom: 60px;
+        }
+
+        /* Cintillo Animado Superior */
+        .cintillo-envios {
+            background: linear-gradient(90deg, #D4AF37, #AA7C11);
+            color: #000;
+            text-align: center;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         /* Header & Nav */
@@ -363,6 +376,13 @@
 </head>
 <body>
 
+    <!-- Cintillo Animado -->
+    <div class="cintillo-envios">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            📍 ENTREGAS LOCALES EN ZONAS CERCANAS &nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp; 📦 ENVÍOS A TODO MÉXICO 🇲🇽 &nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp; ✨ DECANTS 100% ORIGINALES
+        </marquee>
+    </div>
+
     <header>
         <div class="nav-container">
             <a href="#" class="logo">decantAMS</a>
@@ -506,7 +526,7 @@
         const dots = document.querySelectorAll('.dot');
         const totalSlides = document.querySelectorAll('.slide').length;
 
-        // URL actualizada de la API de SheetDB
+        // URL configurada de tu API SheetDB
         const SHEETDB_URL = 'https://sheetdb.io/api/v1/db8ulnecirh5s';
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -757,4 +777,3 @@
     </script>
 </body>
 </html>
-
