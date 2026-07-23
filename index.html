@@ -471,6 +471,38 @@
             color: #D4AF37;
             margin: 25px 0;
         }
+
+        /* Acciones del Carrito (Botones de Pago) */
+        .carrito-acciones {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-spei {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: rgba(212, 175, 55, 0.15);
+            color: #D4AF37;
+            padding: 14px;
+            border: 2px solid #D4AF37;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-spei:hover {
+            background: #D4AF37;
+            color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
         
         /* Botón de WhatsApp */
         .btn-whatsapp {
@@ -480,9 +512,9 @@
             gap: 10px;
             width: 100%;
             background: #080808;
-            color: #D4AF37;
+            color: #25D366;
             padding: 15px;
-            border: 2px solid #D4AF37;
+            border: 2px solid #25D366;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
@@ -490,13 +522,13 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.15);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);
         }
         .btn-whatsapp:hover { 
-            background: #D4AF37; 
+            background: #25D366; 
             color: #111;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
         .btn-whatsapp svg {
@@ -516,6 +548,62 @@
             font-weight: bold;
             margin-left: 5px;
             transition: all 0.3s;
+        }
+
+        /* 🏦 ESTILOS DEL MODAL DE PAGO SPEI */
+        .bank-info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0 15px 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-row span { color: #888; }
+        .info-row strong { color: #fff; }
+
+        .clabe-row {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+        }
+        .clabe-row strong {
+            color: #D4AF37;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .btn-copy {
+            background: #111;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        .modal-note {
+            color: #aaa;
+            font-size: 0.78rem;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.3;
         }
 
         /* Carrusel Clientes */
@@ -1584,6 +1672,44 @@
         </div>
     </div>
 
+    <!-- 🏦 MODAL DE PAGO SPEI (NUEVO) -->
+    <div id="modal-pago-spei" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-pago-spei')">&times;</span>
+            <h2 class="modal-titulo">PAGO POR TRANSFERENCIA</h2>
+            <p class="modal-subtitulo">Realiza tu depósito SPEI y envía tu comprobante</p>
+            
+            <div class="bank-info-box">
+                <div class="info-row">
+                    <span>Banco:</span>
+                    <strong>BBVA</strong>
+                </div>
+                <div class="info-row">
+                    <span>Titular:</span>
+                    <strong>decantAMS</strong>
+                </div>
+                <div class="info-row clabe-row">
+                    <div>
+                        <span style="font-size:0.75rem; display:block; color:#aaa;">CLABE Interbancaria:</span>
+                        <strong id="clabe-numero">1234 5678 9012 3456 78</strong>
+                    </div>
+                    <button class="btn-copy" onclick="copiarClabe()">Copiar</button>
+                </div>
+            </div>
+
+            <p class="modal-note">💡 Coloca tu <strong>nombre o pedido</strong> en el concepto del banco y adjunta la captura en WhatsApp para validar tu envío.</p>
+
+            <div class="modal-seccion">
+                <a href="#" id="btn-comprobante-wa" class="btn-whatsapp" target="_blank">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l138.9-36.4c32.6 17.8 69 27.2 106.4 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 459c-33.2 0-65.7-8.9-94-25.7l-6.7-4-82.5 21.6 22-80.5-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.5-137.5c-5.5-2.7-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.7-12.5 2.8-3.7 5.5-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.1-12 1.4-15-7.5-27.4-12.8-39.3-21.9-30-22.9-46.3-51.6-47.4-56.5-1.1-4.9 1.1-7.7 3.5-10.3 2.1-2.2 4.6-5.4 7-8.1 2.4-2.7 3.2-4.6 4.9-7.8 1.6-3.2 .8-6-1.6-11.5-2.4-5.5-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/>
+                    </svg>
+                    Enviar Comprobante por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
     <section id="gorras">
         <h2>Gorras Exclusivas</h2>
         <div class="productos-grid">
@@ -1625,12 +1751,18 @@
             </div>
             <div class="total-carrito">Total: $<span id="precio-total">0.00</span></div>
             
-            <a href="#" id="whatsapp-link" class="btn-whatsapp" target="_blank" style="display: none;">
-                <svg viewBox="0 0 448 512">
-                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l138.9-36.4c32.6 17.8 69 27.2 106.4 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 459c-33.2 0-65.7-8.9-94-25.7l-6.7-4-82.5 21.6 22-80.5-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.5-137.5c-5.5-2.7-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.7-12.5 2.8-3.7 5.5-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.1-12 1.4-15-7.5-27.4-12.8-39.3-21.9-30-22.9-46.3-51.6-47.4-56.5-1.1-4.9 1.1-7.7 3.5-10.3 2.1-2.2 4.6-5.4 7-8.1 2.4-2.7 3.2-4.6 4.9-7.8 1.6-3.2 .8-6-1.6-11.5-2.4-5.5-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/>
-                </svg>
-                Finalizar Pedido
-            </a>
+            <div id="contenedor-acciones-pago" class="carrito-acciones" style="display: none;">
+                <button class="btn-spei" onclick="abrirModal('modal-pago-spei')">
+                    💳 Pagar por Transferencia (SPEI)
+                </button>
+
+                <a href="#" id="whatsapp-link" class="btn-whatsapp" target="_blank">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l138.9-36.4c32.6 17.8 69 27.2 106.4 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 459c-33.2 0-65.7-8.9-94-25.7l-6.7-4-82.5 21.6 22-80.5-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.5-137.5c-5.5-2.7-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.7-12.5 2.8-3.7 5.5-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.1-12 1.4-15-7.5-27.4-12.8-39.3-21.9-30-22.9-46.3-51.6-47.4-56.5-1.1-4.9 1.1-7.7 3.5-10.3 2.1-2.2 4.6-5.4 7-8.1 2.4-2.7 3.2-4.6 4.9-7.8 1.6-3.2 .8-6-1.6-11.5-2.4-5.5-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/>
+                    </svg>
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1826,6 +1958,14 @@
             }
         });
 
+        /* 📋 COPIAR CLABE INTERBANCARIA */
+        function copiarClabe() {
+            const clabe = "123456789012345678"; // Poner aquí la CLABE limpia sin espacios
+            navigator.clipboard.writeText(clabe).then(() => {
+                mostrarToast("¡CLABE copiada al portapapeles!");
+            });
+        }
+
         function actualizarCarrusel() {
             slides.style.transform = `translateX(-${currentSlide * 100}%)`;
             dots.forEach((dot, index) => {
@@ -1886,13 +2026,15 @@
             const contenedor = document.getElementById('elementos-carrito');
             const precioTotalSpan = document.getElementById('precio-total');
             const cartCountSpan = document.getElementById('cart-count');
+            const contenedorAcciones = document.getElementById('contenedor-acciones-pago');
             const whatsappLink = document.getElementById('whatsapp-link');
+            const btnComprobanteWa = document.getElementById('btn-comprobante-wa');
 
             if (carrito.length === 0) {
                 contenedor.innerHTML = '<p style="text-align: center; color: #ccc;">Tu carrito está vacío.</p>';
                 precioTotalSpan.innerText = '0.00';
                 cartCountSpan.innerText = '0';
-                whatsappLink.style.display = 'none';
+                contenedorAcciones.style.display = 'none';
                 return;
             }
 
@@ -1920,14 +2062,23 @@
             precioTotalSpan.innerText = total.toFixed(2);
             cartCountSpan.innerText = totalCantidad;
 
-            let mensaje = `Hola decantAMS, me interesa realizar un pedido de los siguientes artículos:\n\n`;
+            // Mensaje para pedido directo por WhatsApp
+            let mensajeWa = `Hola decantAMS, me interesa realizar un pedido de los siguientes artículos:\n\n`;
             carrito.forEach(item => {
-                mensaje += `- ${item.nombre} (${item.medida}) x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}\n`;
+                mensajeWa += `- ${item.nombre} (${item.medida}) x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}\n`;
             });
-            mensaje += `\n*Total a pagar: $${total.toFixed(2)}*`;
-            
-            whatsappLink.href = `https://wa.me/5217226772484?text=${encodeURIComponent(mensaje)}`;
-            whatsappLink.style.display = 'flex';
+            mensajeWa += `\n*Total a pagar: $${total.toFixed(2)}*`;
+            whatsappLink.href = `https://wa.me/5217226772484?text=${encodeURIComponent(mensajeWa)}`;
+
+            // Mensaje para enviar comprobante de pago por SPEI
+            let mensajeSpei = `Hola decantAMS, ya realicé mi pago vía transferencia (SPEI) por mi pedido:\n\n`;
+            carrito.forEach(item => {
+                mensajeSpei += `- ${item.nombre} (${item.medida}) x${item.cantidad}\n`;
+            });
+            mensajeSpei += `\n*Total pagado: $${total.toFixed(2)}*\n\nAdjunto mi comprobante de pago:`;
+            btnComprobanteWa.href = `https://wa.me/5217226772484?text=${encodeURIComponent(mensajeSpei)}`;
+
+            contenedorAcciones.style.display = 'flex';
         }
 
         function mostrarToast(mensaje) {
@@ -1949,3 +2100,4 @@
     </script>
 </body>
 </html>
+
