@@ -1,532 +1,1885 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>decantAMS - Tienda Oficial</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>decantAMS - Perfumes Exclusivos</title>
     <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --accent-color: #D4AF37;
-            --text-color: #ffffff;
-            --text-secondary: #aaa;
-        }
+        /* Estilos CSS Base con Fondo de Lujo Local Integrado */
+        *{margin:0;padding:0;box-sizing:border-box}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Asegura el desplazamiento suave al hacer clic en los enlaces del menú */
+        html {
+            scroll-behavior: smooth;
         }
-
+        
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding-bottom: 60px;
-        }
-
-        /* Header & Nav */
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid #333;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Carrusel / Banner */
-        .carousel-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .carousel-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 300px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #000000;
+            background-image: 
+                linear-gradient(rgba(8, 8, 8, 0.82), rgba(8, 8, 8, 0.88)), 
+                url('marmol-oro.jpg'); 
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Efecto parallax en el cel */
+            color: #fff;
+            padding-top: 120px;
+            overflow-x: hidden;
         }
+        
+        /* Navegación */
+        nav{display:flex;justify-content:space-between;align-items:center;padding:15px 8%;position:fixed;top:0;left:0;width:100%;background:rgba(8,8,8,.95);z-index:1000;border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter: blur(10px);}
+        nav ul{display:flex;gap:20px;list-style:none;align-items:center}
+        nav a{color:#fff;text-decoration:none;transition: color 0.3s;font-weight: 500;letter-spacing: 1px;}
+        nav a:hover{color:#D4AF37}
 
-        .slide-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-        }
-
-        .slide-content {
-            position: relative;
-            z-index: 2;
+        /* 📦 CINTURÓN DE ENVÍOS PREMIUM */
+        .shipping-bar {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(8, 8, 8, 0.95) 50%, rgba(212, 175, 55, 0.2) 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 8px 10px;
             text-align: center;
-            padding: 20px;
-        }
-
-        .slide-content h2 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .dot.active {
-            background: var(--accent-color);
-        }
-
-        /* Secciones y Grid */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
-        }
-
-        .grid-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        /* Card de Producto */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Botones de Medidas */
-        .medidas-container {
-            display: flex;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .medida-btn {
-            background: #2a2a2a;
-            color: #fff;
-            border: 1px solid #444;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
             font-size: 0.8rem;
-            flex: 1;
-            transition: all 0.2s;
-        }
-
-        .medida-btn.active {
-            background: var(--accent-color);
-            color: #000;
-            border-color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .precio-dinamico {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            transition: opacity 0.2s;
-        }
-
-        .precio-cambio {
-            opacity: 0.2;
-        }
-
-        .btn-agregar {
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .btn-agregar:hover {
-            background: var(--accent-color);
-            color: #000;
-        }
-
-        /* Carrito / Sidebar */
-        .carrito-sec {
-            margin-top: 50px;
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-        }
-
-        .item-carrito {
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            z-index: 999;
+            backdrop-filter: blur(5px);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #333;
-        }
-
-        .item-carrito button {
-            background: #ff4d4d;
-            border: none;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .acciones-pago {
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        .btn-pago {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px;
-            border-radius: 6px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
+        .shipping-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+        }
+
+        .shipping-item span {
+            color: #D4AF37;
+        }
+        
+        /* Animación para el botón del carrito */
+        @keyframes sacudida-dorada {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); color: #D4AF37; text-shadow: 0 0 12px #D4AF37; }
+            100% { transform: scale(1); }
+        }
+        .animar-carrito {
+            animation: sacudida-dorada 0.4s ease-in-out;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-wa {
-            background: #25D366;
+        .brand-logo-container {
+            width: 200px !important;
+            height: 200px !important;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            border: 4px solid #D4AF37 !important;
+            padding: 8px;
+            background: radial-gradient(circle, rgba(17, 17, 17, 0.9) 60%, rgba(212, 175, 55, 0.2) 100%);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+
+        .brand-logo-container:hover {
+            transform: scale(1.05) rotate(3deg);
+            border-color: #D4AF37;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.7);
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .quote {
+            color: #D4AF37;
+            margin-bottom: 25px;
+            font-style: italic;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #FFF 30%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn{display:inline-block;padding:14px 35px;background:#D4AF37;color:#111;text-decoration:none;border-radius:30px;font-weight:bold;transition: transform 0.2s, background 0.3s, box-shadow 0.3s;cursor:pointer;border:none;box-shadow: 0 4px 15px rgba(212,175,55,0.3);}
+        .btn:hover{background:#fff;transform: scale(1.05);box-shadow: 0 6px 20px rgba(255,255,255,0.4);}
+        
+        /* Secciones */
+        section{padding:80px 8%}
+        h2{font-size:2.2rem;color:#D4AF37;margin-bottom:40px;text-align:center;text-transform: uppercase;letter-spacing: 3px;text-shadow: 0 2px 10px rgba(212,175,55,0.2);}
+        
+        /* Grid de Productos */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+        
+        /* Tarjetas estilo Glassmorphism */
+        .card {
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(12, 12, 12, 0.85); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.9);
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            max-height: 190px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 10px;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card:hover img {
+            transform: scale(1.06) translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 0.5px;
             color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        .btn-spei {
-            background: #0052cc;
-            color: #fff;
+        /* Tag de Familia Olfativa en Tarjeta */
+        .badge-familia {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.12);
+            color: #D4AF37;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin: 8px auto 12px auto;
         }
 
-        /* Modales */
+        /* 🔍 BOTÓN DE FICHA TÉCNICA */
+        .btn-ficha-tecnica {
+            background: rgba(0, 0, 0, 0.6);
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px auto 15px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+        }
+
+        .btn-ficha-tecnica:hover {
+            background: #D4AF37;
+            color: #111;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* 🪟 ESTILOS MODAL POP-UP */
         .modal-container {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 3000;
             justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .modal-container.active {
             display: flex;
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            max-width: 450px;
-            width: 90%;
-            border: 1px solid var(--accent-color);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent-color);
-            color: #000;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 2000;
-        }
-
-        .toast.show {
-            transform: translateY(0);
             opacity: 1;
         }
 
-        .animar-carrito {
-            transform: scale(1.3);
-            transition: transform 0.2s;
+        .modal-content {
+            background: rgba(15, 15, 15, 0.98);
+            border: 2px solid #D4AF37;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 440px;
+            padding: 30px 25px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            text-align: left;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-container.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #888;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #D4AF37;
+        }
+
+        .modal-titulo {
+            color: #D4AF37;
+            font-size: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .modal-subtitulo {
+            color: #aaa;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .modal-badge-categoria {
+            display: block;
+            text-align: center;
+            background: rgba(212, 175, 55, 0.15);
+            color: #D4AF37;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0 auto 20px auto;
+            width: fit-content;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-seccion {
+            margin-bottom: 18px;
+        }
+
+        .modal-seccion h3 {
+            color: #D4AF37;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .modal-seccion ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-seccion li {
+            font-size: 0.85rem;
+            color: #ddd;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        /* Selector tipo Cápsula Premium */
+        .medidas-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        
+        .medida-btn {
+            flex: 1;
+            background: transparent;
+            color: #aaa;
+            border: none;
+            padding: 9px 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            outline: none;
+        }
+        
+        .medida-btn:hover {
+            color: #fff;
+        }
+        
+        .medida-btn.active {
+            background: #D4AF37;
+            color: #111;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.45);
+        }
+        
+        /* Precio Dinámico */
+        .precio-dinamico {
+            font-size: 1.6rem;
+            color: #D4AF37;
+            font-weight: bold;
+            margin-bottom: 18px;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+            opacity: 1;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+        
+        .precio-cambio {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        
+        .btn-agregar {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: #D4AF37;
+            color: #111;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+        }
+        .btn-agregar:hover { 
+            background: #fff; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.3);
+        }
+        .btn-agregar:active {
+            transform: translateY(1px);
+        }
+        
+        /* Carrito Section */
+        .carrito-container {
+            background: rgba(17,17,17,0.75);
+            border: 1px dashed rgba(212,175,55,0.4);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .item-carrito {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        .item-carrito button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .item-carrito button:hover { background: #ff1a1a; }
+        
+        .total-carrito {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D4AF37;
+            margin: 25px 0;
+        }
+
+        /* Acciones del Carrito (Botones de Pago) */
+        .carrito-acciones {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-spei {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: rgba(212, 175, 55, 0.15);
+            color: #D4AF37;
+            padding: 14px;
+            border: 2px solid #D4AF37;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-spei:hover {
+            background: #D4AF37;
+            color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Botón de WhatsApp */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: #080808;
+            color: #25D366;
+            padding: 15px;
+            border: 2px solid #25D366;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);
+        }
+        .btn-whatsapp:hover { 
+            background: #25D366; 
+            color: #111;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp svg {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+        
+        .contador-carrito {
+            background: #D4AF37;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 5px;
+            transition: all 0.3s;
+        }
+
+        /* 🏦 ESTILOS DEL MODAL DE PAGO SPEI */
+        .bank-info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0 15px 0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-row span { color: #888; }
+        .info-row strong { color: #fff; }
+
+        .clabe-row {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+        }
+        .clabe-row strong {
+            color: #D4AF37;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .btn-copy {
+            background: #111;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        .modal-note {
+            color: #aaa;
+            font-size: 0.78rem;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Carrusel Clientes */
+        .clientes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-img-container {
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.03);
+        }
+
+        .slide-caption {
+            width: 100%;
+            padding: 20px 40px;
+            background: linear-gradient(to top, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, 0.85) 70%, transparent 100%);
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .slide-caption p {
+            font-size: 1rem;
+            color: #fff;
+            font-style: italic;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .slide-caption span {
+            font-size: 0.8rem;
+            color: #D4AF37;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(8, 8, 8, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #D4AF37;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-btn:hover {
+            background: #D4AF37;
+            color: #111;
+            border-color: #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .dot.active {
+            background: #D4AF37;
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Toast Notificación */
+        .toast-notificacion {
+            position: fixed;
+            top: 130px;
+            left: 50%;
+            transform: translate(-50%, -150px);
+            background: rgba(17, 17, 17, 0.95);
+            color: #fff;
+            border: 1px solid #D4AF37;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+            opacity: 0;
+        }
+
+        .toast-notificacion.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: #D4AF37;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer-premium {
+            background: rgba(8, 8, 8, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 50px 20px 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-brand {
+            font-size: 1.6rem;
+            color: #D4AF37;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .footer-tagline {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .shipping-info-footer {
+            max-width: 500px;
+            margin: 0 auto 35px auto;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shipping-footer-item {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .shipping-footer-item strong {
+            color: #D4AF37;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: rgba(17, 17, 17, 0.8);
+            color: #D4AF37;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn:hover {
+            background: #D4AF37;
+            color: #080808;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+            border-color: #D4AF37;
+        }
+
+        .social-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: fill 0.35s ease;
+            flex-shrink: 0;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #555;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+        }
+
+        /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 10px !important;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+            }
+
+            body {
+                padding-top: 150px !important;
+            }
+
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 0px 5px !important;
+            }
+
+            .card {
+                padding: 12px !important;
+                border-radius: 12px !important;
+            }
+
+            .card img {
+                max-height: 110px !important;
+                margin-bottom: 10px !important;
+                padding: 5px !important;
+            }
+
+            .card h3 {
+                font-size: 0.95rem !important;
+                min-height: auto !important;
+                margin-bottom: 4px !important;
+            }
+
+            .badge-familia {
+                font-size: 0.65rem !important;
+                padding: 3px 8px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .btn-ficha-tecnica {
+                font-size: 0.7rem !important;
+                padding: 6px 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .medidas-container {
+                padding: 2px !important;
+                margin-bottom: 10px !important;
+                gap: 4px !important;
+            }
+
+            .medida-btn {
+                padding: 6px 4px !important;
+                font-size: 0.75rem !important;
+            }
+
+            .precio-dinamico {
+                font-size: 1.15rem !important;
+                margin-bottom: 10px !important;
+            }
+
+            .btn-agregar {
+                padding: 9px !important;
+                font-size: 0.8rem !important;
+                border-radius: 15px !important;
+            }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="logo" style="font-weight: bold; font-size: 1.5rem; color: #D4AF37; letter-spacing: 2px;">decantAMS</div>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#gorras">Gorras</a></li>
+            <li><a href="#carrito" id="cart-nav-link">Carrito <span id="cart-count" class="contador-carrito">0</span></a></li>
+            <li><a href="#clientes">Clientes</a></li>
+        </ul>
+    </nav>
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">decantAMS</a>
-            <nav>
-                <a href="#catalogo-perfumes">Perfumes</a>
-                <a href="#carrito-section"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a>
-            </nav>
+    <div class="shipping-bar">
+        <div class="shipping-item">
+            <span>📦</span> ENVÍOS A TODO MÉXICO
         </div>
-    </header>
-
-    <!-- Carrusel -->
-    <div class="carousel-container">
-        <div class="carousel-slides" id="carousel-slides">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1000');">
-                <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <h2>Fragancias Exclusivas</h2>
-                    <p>Decants originales en presentaciones de 5ml, 10ml y 30ml.</p>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1000');">
-                <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <h2>Envíos a todo México</h2>
-                    <p>Recibe tus fragancias favoritas directo en tu puerta.</p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-dots">
-            <div class="dot active" onclick="irASlide(0)"></div>
-            <div class="dot" onclick="irASlide(1)"></div>
+        <div class="shipping-item" style="color: rgba(212, 175, 55, 0.4); font-weight: normal;">|</div>
+        <div class="shipping-item">
+            <span>📍</span> ENTREGAS LOCALES EN ZONAS CERCANAS
         </div>
     </div>
 
-    <!-- Contenido Principal -->
-    <div class="container">
-        <h2 class="section-title" id="catalogo-perfumes">Catálogo de Fragancias</h2>
+    <!-- Banner Superior de Ofertas Especiales -->
+    <div style="
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
+        border-bottom: 2px solid #D4AF37;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 14px 10px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        z-index: 998;
+        margin-top: 5px;
+    ">
+        <span style="
+            color: #D4AF37; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 2.5px; 
+            display: block; 
+            margin-bottom: 6px;
+            font-weight: bold;
+        ">
+            ✨ ESPECIAL DE APERTURA: 10ML EN OFERTA ✨
+        </span>
         
-        <div class="grid-productos">
-            <!-- Producto 1 -->
-            <div class="card" data-nombre="Club de Nuit Intense" data-tipo="perfume">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=500" class="card-img" alt="Perfume">
-                <div class="card-body">
-                    <div class="card-title">Club de Nuit Intense</div>
-                    <div class="card-desc">Armaf - Amaderada Especiada</div>
-                    
-                    <div class="medidas-container">
-                        <button class="medida-btn active" data-size="5ml" data-price="120">5ml</button>
-                        <button class="medida-btn" data-size="10ml" data-price="220">10ml</button>
-                        <button class="medida-btn" data-size="30ml" data-price="550">30ml</button>
-                    </div>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #ccc;">
+            Haz clic en tu favorito para ver la promoción:
+        </p>
 
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-                        <span class="precio-dinamico">$120.00</span>
-                    </div>
+        <div style="
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            flex-wrap: wrap;
+            max-width: 650px;
+            margin: 0 auto;
+        ">
+            <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
+            </a>
 
-                    <button class="btn-agregar">Agregar al Carrito</button>
-                </div>
-            </div>
+            <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
+            </a>
 
-            <!-- Producto 2 -->
-            <div class="card" data-nombre="Sauvage Elixir" data-tipo="perfume">
-                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=500" class="card-img" alt="Perfume">
-                <div class="card-body">
-                    <div class="card-title">Sauvage Elixir</div>
-                    <div class="card-desc">Dior - Aromática Especiada</div>
-                    
-                    <div class="medidas-container">
-                        <button class="medida-btn active" data-size="5ml" data-price="250">5ml</button>
-                        <button class="medida-btn" data-size="10ml" data-price="450">10ml</button>
-                        <button class="medida-btn" data-size="30ml" data-price="1200">30ml</button>
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-                        <span class="precio-dinamico">$250.00</span>
-                    </div>
-
-                    <button class="btn-agregar">Agregar al Carrito</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Seccion Carrito -->
-        <div class="carrito-sec" id="carrito-section">
-            <h2 class="section-title">Tu Carrito</h2>
-            <div id="elementos-carrito">
-                <p style="text-align: center; color: #ccc;">Tu carrito está vacío.</p>
-            </div>
-            
-            <div style="margin-top: 20px; text-align: right; font-size: 1.3rem;">
-                <strong>Total: $<span id="precio-total">0.00</span></strong>
-            </div>
-
-            <div class="acciones-pago" id="contenedor-acciones-pago" style="display: none;">
-                <a id="whatsapp-link" href="#" target="_blank" class="btn-pago btn-wa">
-                    <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-                </a>
-                <button onclick="abrirModal('modal-spei')" class="btn-pago btn-spei">
-                    <i class="fas fa-university"></i> Pagar vía SPEI
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal SPEI -->
-    <div class="modal-container" id="modal-spei">
-        <div class="modal-content">
-            <span class="modal-close" onclick="cerrarModal('modal-spei')">&times;</span>
-            <h3 style="color: var(--accent-color); margin-bottom: 15px;">Pago por Transferencia (SPEI)</h3>
-            <p style="margin-bottom: 10px; font-size: 0.9rem;">Realiza tu transferencia a la siguiente cuenta CLABE:</p>
-            
-            <div style="background: #111; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; font-family: monospace; font-size: 1.1rem; margin-bottom: 15px; border: 1px dashed var(--accent-color);">
-                012180015735318339
-            </div>
-
-            <button onclick="copiarClabe()" style="width: 100%; padding: 8px; background: #333; color: #fff; border: 1px solid #555; border-radius: 5px; cursor: pointer; margin-bottom: 15px;">
-                <i class="far fa-copy"></i> Copiar CLABE
-            </button>
-
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px;">
-                Una vez realizado el pago, da clic abajo para enviar tu comprobante e ingresar el pedido a la base de datos.
-            </p>
-
-            <a id="btn-comprobante-wa" href="#" target="_blank" class="btn-pago btn-wa" style="text-decoration: none;">
-                <i class="fab fa-whatsapp"></i> Enviar Comprobante por WhatsApp
+            <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
+                ✨ Rave Now <span style="color: #D4AF37;">$100</span>
             </a>
         </div>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">
-        <span id="toast-mensaje">Notificación</span>
+    <script>
+    function activarOfertaPerfume(nombreOriginal) {
+        setTimeout(() => {
+            const tarjetas = document.querySelectorAll('.card');
+            tarjetas.forEach(tarjeta => {
+                const dataNombre = tarjeta.getAttribute('data-nombre');
+                
+                if (dataNombre && dataNombre.toLowerCase().trim() === nombreOriginal.toLowerCase().trim()) {
+                    const boton10ml = tarjeta.querySelector('.medida-btn[data-size="10ml"]');
+                    if (boton10ml) {
+                        boton10ml.click();
+                    }
+                    
+                    tarjeta.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+                    tarjeta.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.6)';
+                    tarjeta.style.borderColor = '#D4AF37';
+                    
+                    setTimeout(() => {
+                        tarjeta.style.boxShadow = '';
+                        tarjeta.style.borderColor = '';
+                    }, 3500);
+                }
+            });
+        }, 400);
+    }
+    </script>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="brand-logo-container">
+                <img src="https://i.postimg.cc/9zHMMvtK/DECANTAMS.jpg" alt="decantAMS Logo" class="brand-logo">
+            </div>
+            <p class="quote">"El perfume es la forma más intensa del recuerdo"</p>
+            <h1>Descubre tu fragancia ideal</h1>
+            <a href="#catalogo" class="btn">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <section id="catalogo">
+        <h2>Nuestros Decants</h2>
+        <div class="productos-grid">
+            
+            <!-- 1. Mandarin Sky -->
+            <div class="card" id="prod-mandarin" data-tipo="perfume" data-nombre="Mandarin sky">
+                <img src="https://i.postimg.cc/Y2gc74ZH/Mandsrin-sky.png" alt="Mandarin sky">
+                <h3>Mandarin sky</h3>
+                <span class="badge-familia">Cítrica Especiada</span>
+                
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-mandarin')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
+                </div>
+                <div class="precio-dinamico">$85.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 2. Bharara King Soleil -->
+            <div class="card" data-tipo="perfume" data-nombre="Bharara king soleil">
+                <img src="https://i.postimg.cc/5NR8m09v/Bharara.png" alt="Bharara king soleil">
+                <h3>Bharara king soleil</h3>
+                <span class="badge-familia">Cítrica Ámbar</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-bharara')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
+                </div>
+                <div class="precio-dinamico">$85.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 3. Ramz Gold -->
+            <div class="card" data-tipo="perfume" data-nombre="Ramz gold">
+                <img src="https://i.postimg.cc/DzdWRyhL/Ramz_gold.png" alt="Ramz gold">
+                <h3>Ramz gold</h3>
+                <span class="badge-familia">Ámbar Floral</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-ramz-gold')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
+                </div>
+                <div class="precio-dinamico">$65.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 4. Ramz Silver -->
+            <div class="card" data-tipo="perfume" data-nombre="Ramz silver">
+                <img src="https://i.postimg.cc/3wH4L0sX/Ramz_silver.png" alt="Ramz silver">
+                <h3>Ramz silver</h3>
+                <span class="badge-familia">Ámbar Vainilla</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-ramz-silver')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="65">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
+                </div>
+                <div class="precio-dinamico">$65.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 5. Odyssey Aoud -->
+            <div class="card" data-tipo="perfume" data-nombre="Odyssey aoud">
+                <img src="https://i.postimg.cc/DzdWRyhP/Oddysey_aoud.png" alt="Odyssey aoud">
+                <h3>Odyssey aoud</h3>
+                <span class="badge-familia">Amaderada Oud</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-odyssey-aoud')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
+                </div>
+                <div class="precio-dinamico">$80.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 6. Odyssey Wild One Gold -->
+            <div class="card" data-tipo="perfume" data-nombre="Odyssey wild one gold">
+                <img src="https://i.postimg.cc/jjQWBdTc/Oddysey_wild.png" alt="Odyssey wild one gold">
+                <h3>Odyssey wild one gold</h3>
+                <span class="badge-familia">Amaderada Especiado</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-odyssey-wild')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
+                </div>
+                <div class="precio-dinamico">$80.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 7. Club de Nuit Intense -->
+            <div class="card" id="prod-club" data-tipo="perfume" data-nombre="Club de nuit intense">
+                <img src="https://i.postimg.cc/9ft4sF2y/Cdn_intense.png" alt="Club de nuit intense">
+                <h3>Club de nuit intense</h3>
+                <span class="badge-familia">Amaderada Cítrica</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-cdn-intense')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
+                </div>
+                <div class="precio-dinamico">$85.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 8. Club de Nuit Sillage -->
+            <div class="card" data-tipo="perfume" data-nombre="Club de nuit sillage">
+                <img src="https://i.postimg.cc/1zcgb5Sc/CDN_SILLAGE.png" alt="Club de nuit sillage">
+                <h3>Club de nuit sillage</h3>
+                <span class="badge-familia">Almizcle Floral</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-cdn-sillage')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
+                </div>
+                <div class="precio-dinamico">$85.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 9. Tubbees Strawberry -->
+            <div class="card" data-tipo="perfume" data-nombre="Tubbees strawberry">
+                <img src="https://i.postimg.cc/TPXLk5zD/Strowberry.png" alt="Tubbees strawberry">
+                <h3>Tubbees strawberry</h3>
+                <span class="badge-familia">Gourmand Dulce</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-tubbees-strawberry')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
+                </div>
+                <div class="precio-dinamico">$60.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 10. Tubbees Cookies & Cream -->
+            <div class="card" data-tipo="perfume" data-nombre="Tubbees cookies & cream">
+                <img src="https://i.postimg.cc/bvjD6S79/Cookies.png" alt="Tubbees cookies&cream">
+                <h3>Tubbees cookies & cream</h3>
+                <span class="badge-familia">Gourmand Extremo</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-tubbees-cookies')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="60">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
+                </div>
+                <div class="precio-dinamico">$60.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 11. Rave Now Woman -->
+            <div class="card" id="prod-rave" data-tipo="perfume" data-nombre="Rave now woman">
+                <img src="https://i.postimg.cc/R0z6PJk1/Rave_now.png" alt="Rave now woman">
+                <h3>Rave now woman</h3>
+                <span class="badge-familia">Floral Frutal</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-rave-woman')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
+                </div>
+                <div class="precio-dinamico">$80.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 12. Fakhar Rose -->
+            <div class="card" data-tipo="perfume" data-nombre="Fakhar rose">
+                <img src="https://i.postimg.cc/jjrw8npQ/Fakhar_rose.png" alt="Fakhar rose">
+                <h3>Fakhar rose</h3>
+                <span class="badge-familia">Floral Dulce</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-fakhar-rose')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
+                </div>
+                <div class="precio-dinamico">$80.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 13. Nautica Classic (NUEVO) -->
+            <div class="card" data-tipo="perfume" data-nombre="Nautica classic">
+                <img src="https://i.postimg.cc/Jnq7bjFz/Nautica.png" alt="Nautica classic">
+                <h3>Nautica classic</h3>
+                <span class="badge-familia">Amaderado Chipre</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-nautica-classic')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="50">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="85">10ml</button>
+                </div>
+                <div class="precio-dinamico">$50.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <!-- 14. Afnan 9PM (NUEVO) -->
+            <div class="card" data-tipo="perfume" data-nombre="Afnan 9pm">
+                <img src="https://i.postimg.cc/1t2S0MKj/9pm.png" alt="Afnan 9pm">
+                <h3>Afnan 9pm</h3>
+                <span class="badge-familia">Oriental Vainilla</span>
+
+                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-afnan-9pm')">🔍 Ficha Técnica</button>
+
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
+                </div>
+                <div class="precio-dinamico">$85.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 🪟 MODALES DE FICHAS TÉCNICAS (14 PERFUMES) -->
+    
+    <!-- 1. Mandarin Sky Modal -->
+    <div id="modal-mandarin" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-mandarin')">&times;</span>
+            <h2 class="modal-titulo">MANDARIN SKY</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA CÍTIRCA ESPECIADA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍊 <strong>Salida:</strong> Mandarina, Naranja, Azafrán y Salvia</li>
+                    <li>🍯 <strong>Corazón:</strong> Caramelo, Haba Tonka y Cempasúchil</li>
+                    <li>🌲 <strong>Base:</strong> Ambroxan, Cedro y Vetiver</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada - Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Templado / Frío</li>
+                    <li>💼 <strong>Ocasión:</strong> Noche / Eventos Especiales</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <!-- Script de Lógica e Integración con SheetDB -->
+    <!-- 2. Bharara King Soleil Modal -->
+    <div id="modal-bharara" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-bharara')">&times;</span>
+            <h2 class="modal-titulo">BHARARA KING SOLEIL</h2>
+            <p class="modal-subtitulo">🇺🇸 Diseñador | 👦 Hombre | 💎 Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA CÍTRICA ÁMBAR</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍋 <strong>Salida:</strong> Limón, Bergamota y Naranja</li>
+                    <li>🍏 <strong>Corazón:</strong> Manzana, Melocotón y Notas Afrutadas</li>
+                    <li>🪵 <strong>Base:</strong> Ámbar Cálido, Vainilla y Almizcle Blancos</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Pesada / Intensa</li>
+                    <li>☀️ <strong>Clima:</strong> Cálido / Sol</li>
+                    <li>💼 <strong>Ocasión:</strong> Diario / Casual</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Ramz Gold Modal -->
+    <div id="modal-ramz-gold" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-ramz-gold')">&times;</span>
+            <h2 class="modal-titulo">RAMZ GOLD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 🚻 Unisex | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ÁMBAR FLORAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍏 <strong>Salida:</strong> Manzana, Piña y Bergamota</li>
+                    <li>🪷 <strong>Corazón:</strong> Sándalo, Jazmín y Paculí</li>
+                    <li>🪵 <strong>Base:</strong> Notas Dulces, Ámbar y Madera de Guayaco</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-8 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada</li>
+                    <li>☀️ <strong>Clima:</strong> Fresco / Otoño</li>
+                    <li>💼 <strong>Ocasión:</strong> Elegante / Diario</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Ramz Silver Modal -->
+    <div id="modal-ramz-silver" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-ramz-silver')">&times;</span>
+            <h2 class="modal-titulo">RAMZ SILVER</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ÁMBAR VAINILLA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌿 <strong>Salida:</strong> Lavanda, Menta, Bergamota y Pera</li>
+                    <li>🌶️ <strong>Corazón:</strong> Cardamomo y Salvia</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Dulce, Ámbar y Almizcle</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Noche</li>
+                    <li>💼 <strong>Ocasión:</strong> Citas / Salidas Nocturnas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Odyssey Aoud Modal -->
+    <div id="modal-odyssey-aoud" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-odyssey-aoud')">&times;</span>
+            <h2 class="modal-titulo">ODYSSEY AOUD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA OUD</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌾 <strong>Salida:</strong> Azafrán, Nutmeg y Lavanda</li>
+                    <li>🪵 <strong>Corazón:</strong> Oud Misterioso y Resinas</li>
+                    <li>🌿 <strong>Base:</strong> Pachulí, Ámbar y Almizcle</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 9-11 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Intensa / Pesada</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Invierno</li>
+                    <li>💼 <strong>Ocasión:</strong> Formal / Noche de Gala</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Odyssey Wild One Gold Modal -->
+    <div id="modal-odyssey-wild" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-odyssey-wild')">&times;</span>
+            <h2 class="modal-titulo">ODYSSEY WILD ONE GOLD</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA ESPECIADA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🌶️ <strong>Salida:</strong> Pimienta Negra, Bergamota y Limón</li>
+                    <li>🌿 <strong>Corazón:</strong> Lavanda, Pimienta Rosa y Vetiver</li>
+                    <li>🪵 <strong>Base:</strong> Vetiver Terroso, Cedro y Ambroxan</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada - Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Todo Clima</li>
+                    <li>💼 <strong>Ocasión:</strong> Perfume Firma / Carácter Fuerte</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Club de Nuit Intense Modal -->
+    <div id="modal-cdn-intense" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-cdn-intense')">&times;</span>
+            <h2 class="modal-titulo">CLUB DE NUIT INTENSE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Toilette / Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA AMADERADA CÍTRICA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍍 <strong>Salida:</strong> Limón, Piña Ahumada, Grosellas Negras y Bergamota</li>
+                    <li>🌹 <strong>Corazón:</strong> Abedul, Jazmín y Rosa</li>
+                    <li>🪵 <strong>Base:</strong> Almizcle, Ámbar Gris, Pachulí y Vainilla</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 10+ Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Épica / Bestia</li>
+                    <li>☀️ <strong>Clima:</strong> Versátil</li>
+                    <li>💼 <strong>Ocasión:</strong> Conquista / Rey de Halagos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Club de Nuit Sillage Modal -->
+    <div id="modal-cdn-sillage" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-cdn-sillage')">&times;</span>
+            <h2 class="modal-titulo">CLUB DE NUIT SILLAGE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 🚻 Unisex | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA ALMIZCLE FLORAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>❄️ <strong>Salida:</strong> Bergamota, Grosellas Negras, Limón y Violeta</li>
+                    <li>🪷 <strong>Corazón:</strong> Rosa, Jazmín e Iris</li>
+                    <li>🪵 <strong>Base:</strong> Sándalo, Almizcle, Ambrosia y Cedro</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Alta / Radiante</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Calor</li>
+                    <li>💼 <strong>Ocasión:</strong> Oficina / Elegancia Limpia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Tubbees Strawberry Modal -->
+    <div id="modal-tubbees-strawberry" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-tubbees-strawberry')">&times;</span>
+            <h2 class="modal-titulo">TUBBEES STRAWBERRY</h2>
+            <p class="modal-subtitulo">🇬🇧 Importado | 👧 Mujer / Unisex | 💎 Body Mist / EDP</p>
+            <span class="modal-badge-categoria">FRAGANCIA GOURMAND DULCE</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍓 <strong>Salida:</strong> Fresa Cremosa y Azúcar Dulce</li>
+                    <li>🥛 <strong>Corazón:</strong> Crema Batida y Malvavisco</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Dulce y Almizcle Suave</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-7 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada</li>
+                    <li>☀️ <strong>Clima:</strong> Clima Fresco / Templado</li>
+                    <li>💼 <strong>Ocasión:</strong> Casual / Salidas Divertidas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Tubbees Cookies & Cream Modal -->
+    <div id="modal-tubbees-cookies" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-tubbees-cookies')">&times;</span>
+            <h2 class="modal-titulo">TUBBEES COOKIES & CREAM</h2>
+            <p class="modal-subtitulo">🇬🇧 Importado | 🚻 Unisex | 💎 Body Mist / EDP</p>
+            <span class="modal-badge-categoria">FRAGANCIA GOURMAND EXTREMO</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍪 <strong>Salida:</strong> Galleta de Chocolate Negro</li>
+                    <li>🥛 <strong>Corazón:</strong> Crema Dulce de Leche y Manteca de Cacao</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla Intensa y Cacao en Polvo</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-8 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Apetitosa / Dulce</li>
+                    <li>☀️ <strong>Clima:</strong> Frío / Invierno</li>
+                    <li>💼 <strong>Ocasión:</strong> Informal / Gourmand Adictivo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. Rave Now Woman Modal -->
+    <div id="modal-rave-woman" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-rave-woman')">&times;</span>
+            <h2 class="modal-titulo">RAVE NOW WOMAN</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👧 Mujer | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA FLORAL FRUTAL</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍓 <strong>Salida:</strong> Frutos Rojos, Naranja y Fruta de la Pasión</li>
+                    <li>🪷 <strong>Corazón:</strong> Malvavisco, Lirio de los Valles y Jazmín</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla, Almizcle y Musgo</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 7-9 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Encantadora / Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Verano</li>
+                    <li>💼 <strong>Ocasión:</strong> Diario / Coqueto y Femenino</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 12. Fakhar Rose Modal -->
+    <div id="modal-fakhar-rose" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-fakhar-rose')">&times;</span>
+            <h2 class="modal-titulo">FAKHAR ROSE</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👧 Mujer | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FRAGANCIA FLORAL DULCE</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍑 <strong>Salida:</strong> Frutas Maduras, Granadella y Azahar</li>
+                    <li>🌹 <strong>Corazón:</strong> Rosa, Tuberosa, Jazmín y Gardenia</li>
+                    <li>🍦 <strong>Base:</strong> Vainilla, Sándalo, Pachulí y Vainilla Dulce</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Elegante / Femenina</li>
+                    <li>☀️ <strong>Clima:</strong> Primavera / Otoño</li>
+                    <li>💼 <strong>Ocasión:</strong> Eventos / Sofisticada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13. Nautica Classic Modal (NUEVO) -->
+    <div id="modal-nautica-classic" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-nautica-classic')">&times;</span>
+            <h2 class="modal-titulo">NAUTICA CLASSIC</h2>
+            <p class="modal-subtitulo">🇺🇸 Diseñador | 👦 Hombre | 💎 Eau de Toilette</p>
+            <span class="modal-badge-categoria">FAMILIA AMADERADO CHIPRE</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍋‍🟩 <strong>Salida:</strong> Lima, Limón Ácido, Bergamota, Neroli, Ciprés y Canela</li>
+                    <li>🌹 <strong>Corazón:</strong> Jazmín, Geranio, Rosa, Alcaravea y Violeta</li>
+                    <li>🌲 <strong>Base:</strong> Sándalo, Almizcle, Cedro, Musgo de Roble, Pachulí y Ámbar</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 6-8 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada</li>
+                    <li>☀️ <strong>Clima:</strong> Templado / Frío / Calor</li>
+                    <li>💼 <strong>Ocasión:</strong> Diario y Cualquier Actividad</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 14. Afnan 9PM Modal (NUEVO) -->
+    <div id="modal-afnan-9pm" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-afnan-9pm')">&times;</span>
+            <h2 class="modal-titulo">AFNAN 9PM</h2>
+            <p class="modal-subtitulo">🇦🇪 Árabe | 👦 Hombre | 💎 Eau de Parfum</p>
+            <span class="modal-badge-categoria">FAMILIA ORIENTAL VAINILLA</span>
+            <div class="modal-seccion">
+                <h3>| NOTAS OLFATIVAS</h3>
+                <ul>
+                    <li>🍏 <strong>Salida:</strong> Manzana, Canela, Lavanda y Bergamota</li>
+                    <li>💐 <strong>Corazón:</strong> Flor de Azahar del Naranjo y Lirio de los Valles</li>
+                    <li>🍮 <strong>Base:</strong> Vainilla, Haba Tonka, Ámbar y Pachulí</li>
+                </ul>
+            </div>
+            <div class="modal-seccion">
+                <h3>| PERFORMANCE Y USO</h3>
+                <ul>
+                    <li>⏳ <strong>Duración:</strong> 8-10 Horas</li>
+                    <li>📢 <strong>Proyección:</strong> Moderada - Alta</li>
+                    <li>☀️ <strong>Clima:</strong> Templado / Frío</li>
+                    <li>💼 <strong>Ocasión:</strong> Noche / Eventos Especiales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏦 MODAL DE PAGO SPEI (NUEVO) -->
+    <div id="modal-pago-spei" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal('modal-pago-spei')">&times;</span>
+            <h2 class="modal-titulo">PAGO POR TRANSFERENCIA</h2>
+            <p class="modal-subtitulo">Realiza tu depósito SPEI y envía tu comprobante</p>
+            
+            <div class="bank-info-box">
+                <div class="info-row">
+                    <span>Banco:</span>
+                    <strong>BBVA</strong>
+                </div>
+                <div class="info-row">
+                    <span>Titular:</span>
+                    <strong>decantAMS</strong>
+                </div>
+                <div class="info-row clabe-row">
+                    <div>
+                        <span style="font-size:0.75rem; display:block; color:#aaa;">CLABE Interbancaria:</span>
+                        <strong id="clabe-numero">012180015735318339</strong>
+                    </div>
+                    <button class="btn-copy" onclick="copiarClabe()">Copiar</button>
+                </div>
+            </div>
+
+            <p class="modal-note">💡 Coloca tu <strong>nombre o pedido</strong> en el concepto del banco y adjunta la captura en WhatsApp para validar tu envío.</p>
+
+            <div class="modal-seccion">
+                <a href="#" id="btn-comprobante-wa" class="btn-whatsapp" target="_blank">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l138.9-36.4c32.6 17.8 69 27.2 106.4 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 459c-33.2 0-65.7-8.9-94-25.7l-6.7-4-82.5 21.6 22-80.5-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.5-137.5c-5.5-2.7-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.7-12.5 2.8-3.7 5.5-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.1-12 1.4-15-7.5-27.4-12.8-39.3-21.9-30-22.9-46.3-51.6-47.4-56.5-1.1-4.9 1.1-7.7 3.5-10.3 2.1-2.2 4.6-5.4 7-8.1 2.4-2.7 3.2-4.6 4.9-7.8 1.6-3.2 .8-6-1.6-11.5-2.4-5.5-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/>
+                    </svg>
+                    Enviar Comprobante por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="gorras">
+        <h2>Gorras Exclusivas</h2>
+        <div class="productos-grid">
+            
+            <div class="card" data-tipo="gorra" data-nombre="BARBASHATS CR*ME">
+                <img src="https://i.postimg.cc/Y0gDVSRF/Barbascrm.png" alt="BARBASHATS CR*ME">
+                <h3>BARBASHATS CR*ME</h3>
+                <span class="badge-familia">Streetwear</span>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">🧢 Broche ajustable, diseño minimalista</p>
+                
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="Unitalla" data-price="750">Unitalla</button>
+                </div>
+                <div class="precio-dinamico">$750.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="card" data-tipo="gorra" data-nombre="BARBASHATS BCROSS">
+                <img src="https://i.postimg.cc/m2f59QZN/Barbasbcrs.png" alt="BARBASHATS BCROSS">
+                <h3>BARBASHATS BCROSS</h3>
+                <span class="badge-familia">Streetwear</span>
+                <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">👑 Logo bordado con pedreria</p>
+                
+                <div class="medidas-container">
+                    <button class="medida-btn active" data-size="Unitalla" data-price="750">Unitalla</button>
+                </div>
+                <div class="precio-dinamico">$750.00</div>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="carrito">
+        <h2>Tu Carrito de Compras</h2>
+        <div class="carrito-container">
+            <div id="elementos-carrito">
+                <p style="text-align: center; color: #ccc;">Tu carrito está vacío.</p>
+            </div>
+            <div class="total-carrito">Total: $<span id="precio-total">0.00</span></div>
+            
+            <div id="contenedor-acciones-pago" class="carrito-acciones" style="display: none;">
+                <button class="btn-spei" onclick="abrirModal('modal-pago-spei')">
+                    💳 Pagar por Transferencia (SPEI)
+                </button>
+
+                <a href="#" id="whatsapp-link" class="btn-whatsapp" target="_blank">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l138.9-36.4c32.6 17.8 69 27.2 106.4 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 459c-33.2 0-65.7-8.9-94-25.7l-6.7-4-82.5 21.6 22-80.5-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.5-137.5c-5.5-2.7-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.7-12.5 2.8-3.7 5.5-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.1-12 1.4-15-7.5-27.4-12.8-39.3-21.9-30-22.9-46.3-51.6-47.4-56.5-1.1-4.9 1.1-7.7 3.5-10.3 2.1-2.2 4.6-5.4 7-8.1 2.4-2.7 3.2-4.6 4.9-7.8 1.6-3.2 .8-6-1.6-11.5-2.4-5.5-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.5-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.4-1.3-2.3-5-3.7-10.5-6.5z"/>
+                    </svg>
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes">
+        <h2>Nuestros Clientes</h2>
+        <div class="clientes-container">
+            <button class="carousel-btn prev-btn" onclick="cambiarSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="cambiarSlide(1)">&#10095;</button>
+
+            <div class="carousel-slides" id="carousel-slides">
+                
+                <div class="slide">
+                    <div class="slide-img-container">
+                        <img src="https://i.postimg.cc/cChWjTXp/Gorrita.jpg" alt="Cliente Satisfecho 1">
+                    </div>
+                    <div class="slide-caption">
+                        <p>"Excelente atención y la gorra en perfecto estado estado nuevo"</p>
+                        <span>— anonimo (calimaya)</span>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-img-container">
+                        <img src="https://i.postimg.cc/VvgwT4Kc/Decant1.jpg" alt="Cliente Satisfecho 2">
+                    </div>
+                    <div class="slide-caption">
+                        <p>"Los decants son originales y huelen muy rico ademas de su duración muy buena atencion."</p>
+                        <span>— Jessica N. (Calimaya)</span>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-img-container">
+                        <img src="https://i.postimg.cc/hvsnwMp2/Decabt2.jpg" alt="Cliente Satisfecho 3">
+                    </div>
+                    <div class="slide-caption">
+                        <p>"Muy buenos productos todo original y a buen precio. ¡Súper recomendados!"</p>
+                        <span>— Edgar. (Toluca)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots">
+            <span class="dot active" onclick="irASlide(0)"></span>
+            <span class="dot" onclick="irASlide(1)"></span>
+            <span class="dot" onclick="irASlide(2)"></span>
+        </div>
+    </section>
+
+    <footer class="footer-premium">
+        <div class="footer-brand">decantAMS</div>
+        <div class="footer-tagline">El arte de vestir una fragancia</div>
+
+        <div class="shipping-info-footer">
+            <div class="shipping-footer-item">
+                <strong>✈️ Envíos:</strong> Hacemos envíos 100% seguros a todo México.
+            </div>
+            <div class="shipping-footer-item">
+                <strong>📍 Entregas:</strong> Puntos de entrega local y zonas cercanas.
+            </div>
+        </div>
+        
+        <div class="social-icons-container">
+            <a href="https://www.tiktok.com/@decantamsoff?_r=1&_t=ZS-985Pv1R2zv6" target="_blank" class="social-btn" title="Síguenos en TikTok">
+                <svg viewBox="0 0 448 512">
+                    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.17v82.35a80.16,80.16,0,1,0,37.8,67.79V0h82.15a139.77,139.77,0,0,0,13.91,57.14A141.13,141.13,0,0,0,448,109.43Z"/>
+                </svg>
+            </a>
+
+            <a href="https://www.instagram.com/adrianssito_mtz?igsh=MTRkdzl6MzJ2NDJ4dQ==" target="_blank" class="social-btn" title="Síguenos en Instagram">
+                <svg viewBox="0 0 448 512">
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7 0-41.1 33.5-74.7 74.7-74.7 41.1 0 74.7 33.5 74.7 74.7 0 41.1-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 decantAMS. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <div id="toast" class="toast-notificacion">
+        <span class="toast-icon">✨</span>
+        <span id="toast-mensaje">Producto agregado</span>
+    </div>
+
     <script>
         let carrito = [];
+
         let currentSlide = 0;
         let slideInterval;
         const slides = document.getElementById('carousel-slides');
         const dots = document.querySelectorAll('.dot');
         const totalSlides = document.querySelectorAll('.slide').length;
 
-        // URL actualizada de la API de SheetDB
-        const SHEETDB_URL = 'https://sheetdb.io/api/v1/db8ulnecirh5s';
-
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Navegación suave
-            document.querySelectorAll('nav a').forEach(enlace => {
+            document.querySelectorAll('nav a, .hero-content .btn').forEach(enlace => {
                 enlace.addEventListener('click', (e) => {
                     const destinoId = enlace.getAttribute('href');
+                    
                     if (destinoId && destinoId.startsWith('#')) {
                         e.preventDefault();
+                        
                         const seccion = document.querySelector(destinoId);
                         if (seccion) {
-                            seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            seccion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
                         }
                     }
                 });
             });
 
-            // Selección de Medidas y Actualización de Precios
             document.querySelectorAll('.medidas-container').forEach(container => {
                 container.addEventListener('click', (e) => {
                     const btn = e.target.closest('.medida-btn');
@@ -550,16 +1903,17 @@
                 });
             });
 
-            // Botón Agregar al Carrito
             document.querySelectorAll('.btn-agregar').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const card = e.target.closest('.card');
                     if (!card) return;
 
                     const nombre = card.getAttribute('data-nombre');
+                    const tipo = card.getAttribute('data-tipo');
+                    
                     const btnActivo = card.querySelector('.medida-btn.active');
                     const medida = btnActivo ? btnActivo.getAttribute('data-size') : 'Unitalla';
-                    const precio = btnActivo ? parseFloat(btnActivo.getAttribute('data-price')) : 0;
+                    const precio = btnActivo ? parseFloat(btnActivo.getAttribute('data-price')) : 750;
 
                     agregarAlCarrito(nombre, medida, precio);
                     mostrarToast(`¡${nombre} (${medida}) agregado!`);
@@ -570,12 +1924,12 @@
             startSlideShow();
         });
 
-        /* 🪟 FUNCIONES DE VENTANAS MODALES */
+        /* 🪟 FUNCIONES LÓGICAS PARA VENTANAS MODALES */
         function abrirModal(idModal) {
             const modal = document.getElementById(idModal);
             if (modal) {
                 modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; /* Evita scroll de fondo */
             }
         }
 
@@ -583,10 +1937,11 @@
             const modal = document.getElementById(idModal);
             if (modal) {
                 modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'auto'; /* Reactiva scroll */
             }
         }
 
+        /* Cerrar modal si hace clic fuera o presiona la tecla ESC */
         window.onclick = function(e) {
             if (e.target.classList.contains('modal-container')) {
                 e.target.classList.remove('active');
@@ -594,39 +1949,66 @@
             }
         };
 
-        /* 📋 COPIAR CLABE */
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-container.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        /* 📋 COPIAR CLABE INTERBANCARIA */
         function copiarClabe() {
-            const clabe = "012180015735318339";
+            const clabe = "012180015735318339"; // Poner aquí la CLABE limpia sin espacios
             navigator.clipboard.writeText(clabe).then(() => {
                 mostrarToast("¡CLABE copiada al portapapeles!");
             });
         }
 
-        /* 🎠 CARRUSEL */
         function actualizarCarrusel() {
             slides.style.transform = `translateX(-${currentSlide * 100}%)`;
             dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
             });
         }
 
         function cambiarSlide(direccion) {
-            currentSlide = (currentSlide + direccion + totalSlides) % totalSlides;
+            resetSlideShow();
+            currentSlide += direccion;
+            
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
             actualizarCarrusel();
         }
 
         function irASlide(index) {
+            resetSlideShow();
             currentSlide = index;
             actualizarCarrusel();
         }
 
         function startSlideShow() {
-            slideInterval = setInterval(() => cambiarSlide(1), 4000);
+            slideInterval = setInterval(() => {
+                cambiarSlide(1);
+            }, 4000);
         }
 
-        /* 🛒 LÓGICA DEL CARRITO */
+        function resetSlideShow() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
         function agregarAlCarrito(nombre, medida, precio) {
             const itemExistente = carrito.find(item => item.nombre === nombre && item.medida === medida);
+            
             if (itemExistente) {
                 itemExistente.cantidad += 1;
             } else {
@@ -638,46 +2020,6 @@
         function eliminarDelCarrito(index) {
             carrito.splice(index, 1);
             actualizarCarritoUI();
-        }
-
-        /* 📊 REGISTRO DE DATOS EN SHEETDB */
-        async function guardarPedidoEnSheetDB(metodoPago) {
-            if (carrito.length === 0) return;
-
-            const totalCalculado = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            const resumenProductos = carrito.map(item => `${item.nombre} (${item.medida}) x${item.cantidad}`).join(', ');
-
-            const nuevoPedido = {
-                data: [
-                    {
-                        id: "ORD-" + Date.now(),
-                        fecha: new Date().toLocaleString("es-MX", { timeZone: "America/Mexico_City" }),
-                        cliente: "Cliente Web",
-                        productos: resumenProductos,
-                        total: `$${totalCalculado.toFixed(2)}`,
-                        metodo_pago: metodoPago
-                    }
-                ]
-            };
-
-            try {
-                const respuesta = await fetch(SHEETDB_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(nuevoPedido)
-                });
-
-                if (respuesta.ok) {
-                    mostrarToast("✅ Pedido registrado correctamente");
-                } else {
-                    console.error("Error al registrar en SheetDB");
-                }
-            } catch (error) {
-                console.error("Error de conexión:", error);
-            }
         }
 
         function actualizarCarritoUI() {
@@ -720,25 +2062,21 @@
             precioTotalSpan.innerText = total.toFixed(2);
             cartCountSpan.innerText = totalCantidad;
 
-            // WhatsApp Directo
-            let mensajeWa = `Hola decantAMS, me interesa realizar el siguiente pedido:\n\n`;
+            // Mensaje para pedido directo por WhatsApp
+            let mensajeWa = `Hola decantAMS, me interesa realizar un pedido de los siguientes artículos:\n\n`;
             carrito.forEach(item => {
                 mensajeWa += `- ${item.nombre} (${item.medida}) x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}\n`;
             });
             mensajeWa += `\n*Total a pagar: $${total.toFixed(2)}*`;
-
             whatsappLink.href = `https://wa.me/5217226772484?text=${encodeURIComponent(mensajeWa)}`;
-            whatsappLink.onclick = () => guardarPedidoEnSheetDB("WhatsApp / Directo");
 
-            // WhatsApp Comprobante SPEI
+            // Mensaje para enviar comprobante de pago por SPEI
             let mensajeSpei = `Hola decantAMS, ya realicé mi pago vía transferencia (SPEI) por mi pedido:\n\n`;
             carrito.forEach(item => {
                 mensajeSpei += `- ${item.nombre} (${item.medida}) x${item.cantidad}\n`;
             });
-            mensajeSpei += `\n*Total pagado: $${total.toFixed(2)}*\n\nAdjunto mi comprobante:`;
-
+            mensajeSpei += `\n*Total pagado: $${total.toFixed(2)}*\n\nAdjunto mi comprobante de pago:`;
             btnComprobanteWa.href = `https://wa.me/5217226772484?text=${encodeURIComponent(mensajeSpei)}`;
-            btnComprobanteWa.onclick = () => guardarPedidoEnSheetDB("Transferencia SPEI");
 
             contenedorAcciones.style.display = 'flex';
         }
@@ -747,13 +2085,17 @@
             const toast = document.getElementById('toast');
             document.getElementById('toast-mensaje').innerText = mensaje;
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         function animarIconoCarrito() {
             const count = document.getElementById('cart-count');
             count.classList.add('animar-carrito');
-            setTimeout(() => count.classList.remove('animar-carrito'), 300);
+            setTimeout(() => {
+                count.classList.remove('animar-carrito');
+            }, 400);
         }
     </script>
 </body>
