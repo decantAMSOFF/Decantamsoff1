@@ -10,7 +10,6 @@
         /* Asegura el desplazamiento suave al hacer clic en los enlaces del menú */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 180px; /* Asegura el desfase exacto para que el menú no tape la sección */
         }
         
         body {
@@ -932,10 +931,6 @@
 
         /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES */
         @media (max-width: 768px) {
-            html {
-                scroll-padding-top: 220px; /* Desfase ampliado para barra de nav expandida en móvil */
-            }
-
             nav {
                 flex-direction: column;
                 gap: 10px;
@@ -1904,6 +1899,24 @@
         const totalSlides = document.querySelectorAll('.slide').length;
 
         document.addEventListener('DOMContentLoaded', () => {
+            
+            document.querySelectorAll('nav a, .hero-content .btn').forEach(enlace => {
+                enlace.addEventListener('click', (e) => {
+                    const destinoId = enlace.getAttribute('href');
+                    
+                    if (destinoId && destinoId.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const seccion = document.querySelector(destinoId);
+                        if (seccion) {
+                            seccion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
 
             document.querySelectorAll('.medidas-container').forEach(container => {
                 container.addEventListener('click', (e) => {
