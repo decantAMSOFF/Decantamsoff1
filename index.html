@@ -23,7 +23,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed; /* Efecto parallax en el cel */
             color: #fff;
-            padding-top: 175px; /* Ajustado para la navegación + cintillo + barra de envío */
+            padding-top: 120px;
             overflow-x: hidden;
         }
         
@@ -36,7 +36,7 @@
         /* 📦 CINTURÓN DE ENVÍOS PREMIUM */
         .shipping-bar {
             position: fixed;
-            top: 55px; /* Ajustado debajo de la barra de navegación */
+            top: 65px;
             left: 0;
             width: 100%;
             background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, rgba(8, 8, 8, 0.95) 50%, rgba(212, 175, 55, 0.2) 100%);
@@ -65,65 +65,6 @@
 
         .shipping-item span {
             color: #D4AF37;
-        }
-
-        /* ✨ CINTILLO / BANNER DE OFERTAS ESPECIALES */
-        .ofertas-bar {
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
-            border-bottom: 2px solid #D4AF37;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 14px 10px;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            z-index: 998;
-            margin-top: -8px;
-        }
-
-        .ofertas-titulo {
-            color: #D4AF37; 
-            font-size: 11px; 
-            text-transform: uppercase; 
-            letter-spacing: 2.5px; 
-            display: block; 
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        .ofertas-subtitulo {
-            margin: 0 0 12px 0; 
-            font-size: 13px; 
-            color: #ccc;
-        }
-
-        .ofertas-contenedor-botones {
-            display: flex; 
-            justify-content: center; 
-            gap: 12px; 
-            flex-wrap: wrap;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .oferta-btn-link {
-            text-decoration: none; 
-            background: rgba(212, 175, 55, 0.08); 
-            border: 1px solid rgba(212, 175, 55, 0.6); 
-            padding: 7px 14px; 
-            border-radius: 6px; 
-            color: #fff; 
-            font-size: 12px; 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-            gap: 6px; 
-            transition: all 0.3s ease;
-        }
-
-        .oferta-btn-link:hover {
-            background: rgba(212, 175, 55, 0.25);
-            border-color: #D4AF37;
-            transform: translateY(-2px);
         }
         
         /* Animación para el botón del carrito */
@@ -797,7 +738,7 @@
         /* Toast Notificación */
         .toast-notificacion {
             position: fixed;
-            top: 180px;
+            top: 130px;
             left: 50%;
             transform: translate(-50%, -150px);
             background: rgba(17, 17, 17, 0.95);
@@ -943,16 +884,12 @@
                 gap: 12px;
             }
 
-            .shipping-bar {
-                top: 85px; /* Ajuste para pantalla móvil */
-            }
-
             h1 {
                 font-size: 1.8rem !important;
             }
 
             body {
-                padding-top: 210px !important;
+                padding-top: 150px !important;
             }
 
             .productos-grid {
@@ -1036,26 +973,51 @@
         </div>
     </div>
 
-    <!-- ✨ Banner Superior de Ofertas Especiales -->
-    <div class="ofertas-bar">
-        <span class="ofertas-titulo">
+    <!-- Banner Superior de Ofertas Especiales -->
+    <div style="
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(0, 0, 0, 0.95));
+        border-bottom: 2px solid #D4AF37;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        padding: 14px 10px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        z-index: 998;
+        margin-top: 5px;
+    ">
+        <span style="
+            color: #D4AF37; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 2.5px; 
+            display: block; 
+            margin-bottom: 6px;
+            font-weight: bold;
+        ">
             ✨ ESPECIAL DE APERTURA: 10ML EN OFERTA ✨
         </span>
         
-        <p class="ofertas-subtitulo">
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #ccc;">
             Haz clic en tu favorito para ver la promoción:
         </p>
 
-        <div class="ofertas-contenedor-botones">
-            <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" class="oferta-btn-link">
+        <div style="
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            flex-wrap: wrap;
+            max-width: 650px;
+            margin: 0 auto;
+        ">
+            <a href="#prod-mandarin" onclick="activarOfertaPerfume('Mandarin sky')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
                 🍊 Mandarin Sky <span style="color: #D4AF37;">$105</span>
             </a>
 
-            <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" class="oferta-btn-link">
+            <a href="#prod-club" onclick="activarOfertaPerfume('Club de nuit intense')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
                 🔥 Club de Nuit <span style="color: #D4AF37;">$105</span>
             </a>
 
-            <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" class="oferta-btn-link">
+            <a href="#prod-rave" onclick="activarOfertaPerfume('Rave now woman')" style="text-decoration: none; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.6); padding: 7px 14px; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
                 ✨ Rave Now <span style="color: #D4AF37;">$100</span>
             </a>
         </div>
@@ -1113,7 +1075,7 @@
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
-                    <button class="medida-btn" data-size="10ml" data-price="105">10ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
                 </div>
                 <div class="precio-dinamico">$85.00</div>
                 <button class="btn-agregar">Agregar al Carrito</button>
@@ -1209,7 +1171,7 @@
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
-                    <button class="medida-btn" data-size="10ml" data-price="105">10ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="150">10ml</button>
                 </div>
                 <div class="precio-dinamico">$85.00</div>
                 <button class="btn-agregar">Agregar al Carrito</button>
@@ -1273,7 +1235,7 @@
 
                 <div class="medidas-container">
                     <button class="medida-btn active" data-size="5ml" data-price="80">5ml</button>
-                    <button class="medida-btn" data-size="10ml" data-price="100">10ml</button>
+                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
                 </div>
                 <div class="precio-dinamico">$80.00</div>
                 <button class="btn-agregar">Agregar al Carrito</button>
@@ -1295,7 +1257,7 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- 13. Nautica Classic -->
+            <!-- 13. Nautica Classic (NUEVO) -->
             <div class="card" data-tipo="perfume" data-nombre="Nautica classic">
                 <img src="https://i.postimg.cc/Jnq7bjFz/Nautica.png" alt="Nautica classic">
                 <h3>Nautica classic</h3>
@@ -1311,7 +1273,7 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- 14. Afnan 9PM -->
+            <!-- 14. Afnan 9PM (NUEVO) -->
             <div class="card" data-tipo="perfume" data-nombre="Afnan 9pm">
                 <img src="https://i.postimg.cc/1t2S0MKj/9pm.png" alt="Afnan 9pm">
                 <h3>Afnan 9pm</h3>
@@ -1656,7 +1618,7 @@
         </div>
     </div>
 
-    <!-- 13. Nautica Classic Modal -->
+    <!-- 13. Nautica Classic Modal (NUEVO) -->
     <div id="modal-nautica-classic" class="modal-container">
         <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal('modal-nautica-classic')">&times;</span>
@@ -1683,7 +1645,7 @@
         </div>
     </div>
 
-    <!-- 14. Afnan 9PM Modal -->
+    <!-- 14. Afnan 9PM Modal (NUEVO) -->
     <div id="modal-afnan-9pm" class="modal-container">
         <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal('modal-afnan-9pm')">&times;</span>
@@ -1710,7 +1672,7 @@
         </div>
     </div>
 
-    <!-- 🏦 MODAL DE PAGO SPEI -->
+    <!-- 🏦 MODAL DE PAGO SPEI (NUEVO) -->
     <div id="modal-pago-spei" class="modal-container">
         <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal('modal-pago-spei')">&times;</span>
@@ -1729,7 +1691,7 @@
                 <div class="info-row clabe-row">
                     <div>
                         <span style="font-size:0.75rem; display:block; color:#aaa;">CLABE Interbancaria:</span>
-                        <strong id="clabe-numero">012180015735318339</strong>
+                        <strong id="clabe-numero">1234 5678 9012 3456 78</strong>
                     </div>
                     <button class="btn-copy" onclick="copiarClabe()">Copiar</button>
                 </div>
@@ -1998,7 +1960,7 @@
 
         /* 📋 COPIAR CLABE INTERBANCARIA */
         function copiarClabe() {
-            const clabe = "012180015735318339";
+            const clabe = "123456789012345678"; // Poner aquí la CLABE limpia sin espacios
             navigator.clipboard.writeText(clabe).then(() => {
                 mostrarToast("¡CLABE copiada al portapapeles!");
             });
