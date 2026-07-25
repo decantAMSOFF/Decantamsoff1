@@ -1224,21 +1224,23 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
-            <!-- 14. Afnan 9PM (NUEVO) -->
-            <div class="card" data-tipo="perfume" data-nombre="Afnan 9pm">
-                <img src="https://i.postimg.cc/1t2S0MKj/9pm.png" alt="Afnan 9pm">
-                <h3>Afnan 9pm</h3>
-                <span class="badge-familia">Oriental Vainilla</span>
+                    <!-- 14. Afnan 9PM -->
+        <div class="card" data-tipo="perfume" data-nombre="Afnan 9pm">
+            <img src="https://i.postimg.cc/iT2S0NKj/9pm.png" alt="Afnan 9pm">
+            <h3>Afnan 9pm</h3>
+            <span class="badge-familia">Oriental Vainilla</span>
+            <span class="badge-agotado" style="background-color: #dc3545; color: #fff; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 5px;">Agotado</span>
 
-                <button class="btn-ficha-tecnica" onclick="abrirModal('modal-afnan-9pm')">🔍 Ficha Técnica</button>
+            <button class="btn-ficha-tecnica" onclick="abrirModal('modal-afnan-9pm')">🔍 Ficha Técnica</button>
 
-                <div class="medidas-container">
-                    <button class="medida-btn active" data-size="5ml" data-price="85">5ml</button>
-                    <button class="medida-btn" data-size="10ml" data-price="140">10ml</button>
-                </div>
-                <div class="precio-dinamico">$85.00</div>
-                <button class="btn-agregar">Agregar al Carrito</button>
+            <div class="medidas-container">
+                <button class="medida-btn active" data-size="5ml" data-price="85" disabled style="opacity: 0.5; cursor: not-allowed;">5ml</button>
+                <button class="medida-btn" data-size="10ml" data-price="140" disabled style="opacity: 0.5; cursor: not-allowed;">10ml</button>
             </div>
+            <div class="precio-dinamico">$85.00</div>
+            <button class="btn-agregar" disabled style="background-color: #555; color: #aaa; cursor: not-allowed; opacity: 0.7;">Agotado</button>
+        </div>
+
 
         </div>
     </section>
