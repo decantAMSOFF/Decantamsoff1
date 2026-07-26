@@ -2061,7 +2061,41 @@ function actualizarCarritoUI() {
         return;
     }
 
+    function mostrarNotificacion(mensaje) {
+    let toast = document.getElementById('toast-notificacion');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notificacion';
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #111;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-size: 14px;
+            z-index: 10000;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        `;
+        document.body.appendChild(toast);
+    }
 
+    toast.innerText = mensaje;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+    }, 3000);
+}
+
+    
             contenedor.innerHTML = '';
             let total = 0;
             let totalCantidad = 0;
