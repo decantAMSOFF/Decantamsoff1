@@ -2027,37 +2027,40 @@
         }
 
         function agregarAlCarrito(nombre, medida, precio) {
-            const itemExistente = carrito.find(item => item.nombre === nombre && item.medida === medida);
-            
-            if (itemExistente) {
-                itemExistente.cantidad += 1;
-            } else {
-                carrito.push({ nombre, medida, precio, cantidad: 1 });
-            }
-            actualizarCarritoUI();
-        }
+    const itemExistente = carrito.find(item => item.nombre === nombre && item.medida === medida);
 
-        function eliminarDelCarrito(index) {
-            carrito.splice(index, 1);
-            actualizarCarritoUI();
-        }
+    if (itemExistente) {
+        itemExistente.cantidad += 1;
+    } else {
+        carrito.push({ nombre, medida, precio, cantidad: 1 });
+    }
+    actualizarCarritoUI();
+    
+    // Notificación Toast Luxury
+    mostrarNotificacion(`¡${nombre} (${medida}) agregado al carrito!`);
+}
 
-        function actualizarCarritoUI() {
-            const contenedor = document.getElementById('elementos-carrito');
-            const precioTotalSpan = document.getElementById('precio-total');
-            const cartCountSpan = document.getElementById('cart-count');
-            const contenedorAcciones = document.getElementById('contenedor-acciones-pago');
-            const whatsappLink = document.getElementById('whatsapp-link');
-            const btnComprobanteWa = document.getElementById('btn-comprobante-wa');
-            const btnEfectivoWa = document.getElementById('btn-efectivo-wa');
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarCarritoUI();
+}
 
-            if (carrito.length === 0) {
-                contenedor.innerHTML = '<p style="text-align: center; color: #ccc;">Tu carrito está vacío.</p>';
-                precioTotalSpan.innerText = '0.00';
-                cartCountSpan.innerText = '0';
-                contenedorAcciones.style.display = 'none';
-                return;
-            }
+function actualizarCarritoUI() {
+    const contenedor = document.getElementById('elementos-carrito');
+    const precioTotalSpan = document.getElementById('precio-total');
+    const cartCountSpan = document.getElementById('cart-count');
+    const contenedorAcciones = document.getElementById('contenedor-acciones-pago');
+    const btnComprobanteWa = document.getElementById('btn-comprobante-wa');
+    const btnEfectivoWa = document.getElementById('btn-efectivo-wa');
+
+    if (carrito.length === 0) {
+        contenedor.innerHTML = '<p style="text-align: center; color: #ccc;">Tu carrito está vacío</p>';
+        precioTotalSpan.innerText = '0.00';
+        cartCountSpan.innerText = '0';
+        contenedorAcciones.style.display = 'none';
+        return;
+    }
+
 
             contenedor.innerHTML = '';
             let total = 0;
