@@ -1259,6 +1259,23 @@
                 <button class="btn-agregar">Agregar al Carrito</button>
             </div>
 
+            <!-- 15. Perry Ellis Love -->
+<div class="card" data-tipo="perfume" data-nombre="Perry Ellis Love">
+  <img src="https://i.postimg.cc/P5g7t3mc/Perryellislove.png" alt="Perry Ellis Love">
+  <h3>Perry Ellis Love</h3>
+  <span class="badge-familia">Floral</span>
+
+  <button class="btn-ficha-tecnica" onclick="abrirModal('modal-perry-ellis-love')">🔍 Ficha Técnica</button>
+
+  <div class="medidas-container">
+    <button class="medida-btn active" data-size="5ml" data-price="70">$70 (5ml)</button>
+    <button class="medida-btn" data-size="10ml" data-price="120">$120 (10ml)</button>
+  </div>
+
+  <div class="precio-dinamico">$70.00</div>
+  <button class="btn-agregar">Agregar al Carrito</button>
+</div>
+
             <!-- 14. Afnan 9PM -->
             <div class="card" data-tipo="perfume" data-nombre="Afnan 9pm">
                 <img src="https://i.postimg.cc/CMZ5NCWc/9pmclasic.png" alt="Afnan 9pm">
@@ -1643,6 +1660,35 @@
             </div>
         </div>
     </div>
+
+    <!-- MODAL PERRY ELLIS LOVE -->
+<div id="modal-perry-ellis-love" class="modal-container">
+  <div class="modal-content">
+    <span class="close-modal" onclick="cerrarModal('modal-perry-ellis-love')">&times;</span>
+    <h2 class="modal-titulo">PERRY ELLIS LOVE</h2>
+    <p class="modal-subtitulo">🇺🇸 Diseñador | 🚺 Mujer | 🌸 Eau de Parfum</p>
+    <span class="modal-badge-categoria">FRAGANCIA FLORAL</span>
+    
+    <div class="modal-seccion">
+      <h3>NOTAS OLFATIVAS</h3>
+      <ul>
+        <li>🍊 <strong>Salida:</strong> Cítricos y Pimienta</li>
+        <li>🌹 <strong>Corazón:</strong> Rosa, Frangipani y Lirio</li>
+        <li>🌲 <strong>Base:</strong> Sándalo, Pachulí, Almizcle, Vainilla y Ciruela</li>
+      </ul>
+    </div>
+
+    <div class="modal-seccion">
+      <h3>PERFORMANCE Y USO</h3>
+      <ul>
+        <li>⏳ <strong>Duración:</strong> 7-8 Horas</li>
+        <li>📢 <strong>Proyección:</strong> Media / Alta</li>
+        <li>☀️ <strong>Clima:</strong> Primavera / Verano</li>
+        <li>💼 <strong>Ocasión:</strong> Diario / Ocasiones Especiales</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
     <!-- 🏦 MODAL DE PAGO SPEI -->
     <div id="modal-pago-spei" class="modal-container">
